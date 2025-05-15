@@ -66,3 +66,4 @@ end
 gem "minitest-rails", "~> 8.0"
 gem "devise", "~> 4.9"
 gem "tailwindcss-rails", "3.3.1"
+gem 'minitest-reporters', "1.7.1"
