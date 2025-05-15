@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
   devise_scope :user do
-    get '/signup', to: 'devise/registrations#new'
-    get '/login', to: 'devise/sessions#new'
-    delete '/logout', to: 'devise/sessions#destroy'
+    get '/signup', to: 'users/registrations#new'
+    get '/login', to: 'users/sessions#new'
+    delete '/logout', to: 'users/sessions#destroy'
   end  
 end
