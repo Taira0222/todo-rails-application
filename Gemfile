@@ -61,9 +61,12 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "minitest-rails", "~> 8.0"
+  gem 'minitest-reporters', "1.7.1"
+  gem "rails-controller-testing", '1.0.5'
 end
 
-gem "minitest-rails", "~> 8.0"
+
 gem "devise", "~> 4.9"
 gem "tailwindcss-rails", "3.3.1"
-gem 'minitest-reporters', "1.7.1"
+
