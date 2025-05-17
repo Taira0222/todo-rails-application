@@ -8,7 +8,7 @@ class DeviseMailerTest < ActionMailer:: TestCase
     @user.confirmation_token = enc 
     mail = Devise::Mailer.confirmation_instructions(@user, @user.confirmation_token) # メールを送信
 
-    assert_equal 'Confirmation instructions', mail.subject
+    assert_equal '【重要】アカウントの有効化について', mail.subject
     assert_equal [@user.email],mail.to
     assert_equal ["devtest@example.com"],mail.from # from はconfig/initializer/devise.rb config.mailer_senderを参照
     assert_match @user.confirmation_token, mail.body.encoded

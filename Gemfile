@@ -68,5 +68,8 @@ end
 
 
 gem "devise", "~> 4.9"
+gem "devise-i18n","1.12.1" # devise周りを日本語に
+gem "rails-i18n", "8.0.0" # rails 全般を日本語に
 gem "tailwindcss-rails", "3.3.1"
+
 
