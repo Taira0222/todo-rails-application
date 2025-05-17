@@ -13,12 +13,16 @@ module TodoApplication
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
-    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    # Common ones are `templates`, `generators`, or `middleware`, for <example class=""></example>
     config.autoload_lib(ignore: %w[assets tasks])
 
+    # testを生成するとデフォルトでminitestが生成される
     config.generators do |g|
       g.test_framework :minitest, spec: false
     end
+
+    # アプリのデフォルトの言語を日本語に設定
+    config.i18n.default_locale = :ja
 
     # Configuration for the application, engines, and railties goes here.
     #

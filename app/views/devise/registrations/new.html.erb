@@ -4,7 +4,7 @@
     <div class="w-full md:w-1/2 xl:w-5/12 border rounded-xl p-8">
       <!-- 見出し -->
       <h2 class="text-center text-3xl text-gray-800 font-bold md:text-4xl md:leading-tight lg:text-5xl lg:leading-tight dark:text-neutral-200">
-        Sign up
+        会員登録
       </h2>
 
       <!-- Google サインアップボタン -->
@@ -30,7 +30,7 @@
       <!-- Devise の form_for を Tailwind スタイルでラップ -->
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
             html: { class: "space-y-6" }) do |f| %>
-        <%= render "users/shared/error_messages", resource: resource %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
         <div>
           <%= f.label :name, class: "block text-sm font-medium dark:text-white" %>
@@ -66,14 +66,14 @@
         </div>
 
         <div class="grid">
-          <%= f.submit "Sign up",
+          <%= f.submit "新規登録",
                 class: "py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" %>
         </div>
       <% end %>
 
       <!-- リンク類 -->
       <div class="mt-4 text-center">
-        <%= render "users/shared/links" %>
+        <%= render "devise/shared/links" %>
       </div>
     </div>
   </div>
