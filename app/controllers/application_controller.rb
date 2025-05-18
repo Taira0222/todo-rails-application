@@ -1,13 +1,15 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  allow_browser versions: :modern
+  if Rails.env.production?
+    allow_browser versions: :modern
+  end
+
 
   protected
 
   # registrations_controllerのstrong parameterにnameを追加した。
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
 end

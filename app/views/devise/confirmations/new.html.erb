@@ -1,16 +1,35 @@
-<h2>Resend confirmation instructions</h2>
+<!-- Hero セクション開始 -->
+<div class="relative overflow-hidden py-20 bg-gradient-to-b from-blue-50 to-white">
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-12 flex flex-col items-center">
+      <!-- 見出し -->
+      <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-4 dark:text-neutral-200 tracking-tight">
+        確認メールを再送信
+      </h2>
+      <p class="text-center text-gray-600 mb-8 leading-relaxed dark:text-neutral-400">
+        ご登録いただいたメールアドレス宛に送信された確認メールが届かない場合は、<br>
+        下記フォームにメールアドレスを入力して「確認メールを再送信」を押してください。<br>
+        迷惑メールフォルダもご確認ください。
+      </p>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name),
+            html: { method: :post, class: "w-full space-y-6" }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        <div>
+          <%= f.label :email, "メールアドレス", class: "block text-sm font-medium mb-2 dark:text-white" %>
+          <%= f.email_field :email,
+                autofocus: true,
+                autocomplete: "email",
+                class: "py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 transition" %>
+        </div>
+
+        <div>
+          <%= f.submit "確認メールを再送信",
+                class: "w-full py-3 px-4 flex justify-center items-center text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition disabled:opacity-50 disabled:pointer-events-none" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
+<!-- Hero セクション終了 -->

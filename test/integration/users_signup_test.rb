@@ -35,6 +35,8 @@ class UsersSignupTest < UsersSignup
   end
 
   test 'valid signup information' do
+    assert_select 'a[href=?]', login_path
+    assert_select 'a[href=?]', new_user_confirmation_path
     ActionMailer::Base.deliveries.clear
     assert_difference 'User.count',1 do
       post user_registration_path, params: {user: {name: 'test',
@@ -51,7 +53,7 @@ class UsersSignupTest < UsersSignup
     # 送信したメールのテスト
     mail = ActionMailer::Base.deliveries.last
     assert_equal ["test@gmail.com"], mail.to
-    assert_match "Confirmation instructions", mail.subject
+    assert_match "【重要】アカウントの有効化について", mail.subject
 
 
   end
