@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: 'static_pages#home'
-  # asをつけることで、パスの名前付きヘルパーconfirmation_sent_pathを生成できる
   get '/confirmation_sent', to: 'static_pages#confirmation_sent', as: :confirmation_sent 
+  get "/today", to: 'lists#today', as: :today
+  get "/upcoming", to: 'lists#upcoming', as: :upcoming
+  get "/inbox", to: 'lists#inbox', as: :inbox
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions:      'users/sessions',
