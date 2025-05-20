@@ -2,8 +2,10 @@ user1:
   name: takeshi
   email: test1@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.current %>
 
 user2:
   name: nobita
   email: test2@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.current %>
