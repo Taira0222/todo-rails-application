@@ -33,4 +33,4 @@ class UsersLoginTest < UsersLogin
 end
 
 
-# ---TODO: ログアウトのテストをここに記述する----
+# ---TODO: ログアウトのテストをログアウトボタン実装したらここに記述する----
