@@ -2,7 +2,7 @@
 import '@hotwired/turbo-rails';
 import 'controllers';
 import 'preline';
-
+// views/shared/_logged_in_header.html.erb のjsコードです
 document.addEventListener('turbo:load', () => {
   const btn = document.getElementById('menu-button');
   const menu = document.getElementById('account-menu-dropdown');
