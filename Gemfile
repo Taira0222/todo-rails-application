@@ -55,6 +55,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem 'foreman'
+  gem 'faker', "3.5.1"
 end
 
 group :test do
@@ -71,5 +72,3 @@ gem "devise", "~> 4.9"
 gem "devise-i18n","1.12.1" # devise周りを日本語に
 gem "rails-i18n", "8.0.0" # rails 全般を日本語に
 gem "tailwindcss-rails", "3.3.1"
-
-

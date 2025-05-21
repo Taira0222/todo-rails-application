@@ -1,6 +1,7 @@
 require "test_helper"
 
 class UsersLogin < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
   def setup
     @user = users(:user1)
   end
@@ -33,4 +34,18 @@ class UsersLoginTest < UsersLogin
 end
 
 
-# ---TODO: ログアウトのテストをログアウトボタン実装したらここに記述する----
+class UsersLogoutTest < UsersLogin
+
+  test 'logout valid user' do
+    # ログイン処理
+    sign_in @user
+    get today_path
+    # ログアウト処理
+    delete logout_path
+    assert_redirected_to root_path
+    follow_redirect!
+    assert_not flash.empty?
+    assert_template 'static_pages/home'
+  end
+
+end
