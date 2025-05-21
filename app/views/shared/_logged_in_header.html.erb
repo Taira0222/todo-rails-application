@@ -1,0 +1,69 @@
+<header class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full bg-blue-600 shadow">
+  <nav class="relative max-w-5xl w-full md:flex md:items-center md:justify-between mx-auto px-4 sm:px-6 lg:px-8 py-2">
+    <!-- Logo & Collapse Button -->
+    <div class="flex items-center justify-between w-full md:w-auto">
+      <a class="flex-none font-bold text-2xl text-white hover:opacity-90 transition" href="<%= today_path %>" aria-label="todo-application">Todo</a>
+      <div class="md:hidden">
+        <button type="button"
+          class="hs-collapse-toggle relative size-9 flex justify-center items-center rounded-lg border border-white/50 text-white hover:bg-white/10 focus:outline-hidden focus:bg-white/10 disabled:opacity-50 disabled:pointer-events-none"
+          id="hs-base-header-collapse" aria-expanded="false" aria-controls="hs-base-header" aria-label="Toggle navigation" data-hs-collapse="#hs-base-header">
+          <!-- Hamburger Icon -->
+          <svg class="hs-collapse-open:hidden size-5 text-white"
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" x2="21" y1="6" y2="6"/>
+            <line x1="3" x2="21" y1="12" y2="12"/>
+            <line x1="3" x2="21" y1="18" y2="18"/>
+          </svg>
+          <!-- Close Icon -->
+          <svg class="hidden hs-collapse-open:block shrink-0 size-5 text-white"
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"/>
+            <path d="m6 6 12 12"/>
+          </svg>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+
+
+      </div>
+    </div>
+    <!-- Collapse -->
+    <div id="hs-base-header" class="hs-collapse hidden overflow-visible transition-all duration-300 basis-full grow md:block" aria-labelledby="hs-base-header-collapse">
+      <div>
+        <div class="py-2 md:py-0 flex flex-col md:flex-row md:items-center md:justify-end gap-4 md:gap-8">
+          <!-- ナビゲーション -->
+          <a class="px-4 py-2 text-base font-semibold text-white/90 hover:text-white hover:bg-white/10 rounded transition" href=<%= today_path %>>今日</a>
+          <a class="px-4 py-2 text-base font-semibold text-white/80 hover:text-white hover:bg-white/10 rounded transition" href=<%= upcoming_path %>>近日予定</a>
+          <a class="px-4 py-2 text-base font-semibold text-white/80 hover:text-white hover:bg-white/10 rounded transition" href=<%= inbox_path %>>Inbox</a>
+          <!-- アカウント設定 -->
+          <div class="relative inline-block text-left">
+            <div>
+              <button type="button" id="menu-button" aria-expanded="false" aria-haspopup="true"
+                class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-4 py-2 text-base font-semibold text-white/80 hover:text-white hover:bg-white/10 rounded transition"
+              >
+                <%= current_user.name%>
+                <svg class="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                  <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- ドロップダウンメニュー（初期状態はhidden） -->
+            <div id="account-menu-dropdown"
+              class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none hidden transition"
+              role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+              <div class="py-1" role="none">
+                <a href="<%= account_edit_path %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">アカウント情報</a>
+                <%= link_to "ログアウト", logout_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"%>
+                <%= link_to "アカウント削除", registration_path(:user), data: { "turbo-method": :delete, turbo_confirm: "本当に削除しますか？" }, class: "block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50", role: "menuitem", tabindex: "-1" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

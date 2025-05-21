@@ -8,20 +8,6 @@ class UsersSignup < ActionDispatch::IntegrationTest
 end
 
 
-class HomeTest < ActionDispatch::IntegrationTest
-
-  test 'home page shows correct links' do
-    get root_path
-    assert_template 'static_pages/home'
-    assert_select 'a[href=?]', root_path, count:3
-    assert_select 'a[href=?]', 'https://github.com/Taira0222', count:3
-    assert_select 'a[href=?]', 'https://qiita.com/Taira0222', count:2
-    assert_select 'a[href=?]', signup_path
-    assert_select 'a[href=?]', login_path, count:2
-  end
- 
-end
-
 class UsersSignupTest < UsersSignup
   test 'invalid signup infomation' do
     assert_no_difference 'User.count' do

@@ -23,6 +23,7 @@ module TodoApplication
 
     # アプリのデフォルトの言語を日本語に設定
     config.i18n.default_locale = :ja
+    
 
     # Configuration for the application, engines, and railties goes here.
     #

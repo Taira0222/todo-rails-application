@@ -2,3 +2,27 @@
 import '@hotwired/turbo-rails';
 import 'controllers';
 import 'preline';
+// views/shared/_logged_in_header.html.erb のjsコードです
+document.addEventListener('turbo:load', () => {
+  const btn = document.getElementById('menu-button');
+  const menu = document.getElementById('account-menu-dropdown');
+
+  if (btn && menu) {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      menu.classList.toggle('hidden');
+      btn.setAttribute(
+        'aria-expanded',
+        menu.classList.contains('hidden') ? 'false' : 'true'
+      );
+    });
+
+    // 外をクリックしたら閉じる
+    document.addEventListener('click', (event) => {
+      if (!btn.contains(event.target) && !menu.contains(event.target)) {
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+});
