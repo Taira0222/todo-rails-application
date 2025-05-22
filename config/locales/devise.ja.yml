@@ -28,6 +28,8 @@ ja:
     mailer:
       confirmation_instructions:
         subject: '【重要】アカウントの有効化について'
+      email_changed:
+        subject: '【重要】メールアドレス変更について'
       reset_password_instructions:
         subject: '【重要】パスワードの再設定について'
       unlock_instructions:
