@@ -9,5 +9,11 @@ class DeviseMailerPreview < ActionMailer::Preview
     user.confirmation_token ||= enc
     Devise::Mailer.confirmation_instructions(user, user.confirmation_token)
   end
+
+  # http://localhost:3000/rails/mailers/devise_mailer/email_changed
+  def email_changed
+    user = User.last
+    Devise::Mailer.email_changed(user)
+  end
 end
 
