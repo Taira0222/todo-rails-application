@@ -8,4 +8,5 @@ class ListsController < ApplicationController
 
   def inbox
   end
+
 end
