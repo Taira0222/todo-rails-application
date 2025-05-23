@@ -89,7 +89,7 @@ Rails.application.configure do
   :password => ENV["SENDGRID_API_KEY"],
   :domain => host,
   :authentication =>:plain,
-  :enable_starttls_auto=>:true
+  :enable_starttls_auto=> true
   }
  
 
