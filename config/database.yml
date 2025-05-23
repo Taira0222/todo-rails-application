@@ -24,3 +24,8 @@ queue:
   <<: *default
   # production と同じ DB 接続を使う例
   url: <%= ENV['DATABASE_URL'] %>
+
+cache:
+  <<: *default
+  # production と同じ DB 接続を使う例
+  url: <%= ENV['DATABASE_URL'] %>
