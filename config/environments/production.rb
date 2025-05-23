@@ -80,15 +80,16 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method =:smtp
-  host = 'todo-rails-application.onrender.com/'
+  host = 'todo-rails-application.onrender.com'
   config.action_mailer.default_url_options = {host:host}
   ActionMailer::Base.smtp_settings ={
   :port => 587,
-  :address =>'smtp.mailgun.org',
-  :user_name =>ENV['MAILGUN_SMTP_LOGIN'],
-  :password => ENV['MAILGUN_SMTP_PASSWORD'],
+  :address =>"smtp.sendgrid.net",
+  :user_name =>"apikey",
+  :password => ENV["SENDGRID_API_KEY"],
   :domain => host,
   :authentication =>:plain,
+  :enable_starttls_auto=>:true
   }
  
 
