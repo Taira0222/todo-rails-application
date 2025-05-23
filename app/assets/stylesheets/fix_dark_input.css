@@ -1,10 +1,5 @@
-@layer utilities {
-  /* すべてのフォーム入力を常にライト配色に固定 */
-  input,
-  textarea,
-  select {
-    color-scheme: light; /* ← WebKit の自動ダークを無効化 */
-    background-color: #ffffff;
-    color: #000000;
+@layer base {
+  html {
+    color-scheme: light; /* WebKit の自動ダーク変換を無効化 */
   }
 }
