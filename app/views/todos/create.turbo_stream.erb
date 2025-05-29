@@ -1,0 +1,5 @@
+<% source = params[:source] %>
+
+<%= turbo_stream.append "todos_#{source}" do %>
+  <%= render partial: "todo_new", locals: { todo: @todo } %>
+<% end %>

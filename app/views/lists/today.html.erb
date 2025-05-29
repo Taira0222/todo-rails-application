@@ -1,4 +1,33 @@
-<div>
-  <h1 class="font-bold text-4xl">Lists#today</h1>
-  <p>Find me in app/views/lists/today.html.erb</p>
+<div class="max-w-2xl mx-auto px-4 py-6">
+  <!-- 見出し -->
+  <h1 class="text-2xl font-bold mb-2">今日</h1>
+  <p class="flex items-center text-gray-500 text-sm mb-6">
+    <!-- todoアイコン -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M5 13l4 4L19 7" />
+    </svg>
+    <%= pluralize(@todos.count, "件") %>のタスク
+  </p>
+
+  <!-- タスク一覧 -->
+  <ul id = "todos_today" class="space-y-4">
+    <%=  render partial: 'todos/todo', collection: @todos, as: :todo, locals: { source: 'today' }%>
+  </ul>
+
+  <!-- タスク追加リンク -->
+  <div class="mt-6">
+    <%= link_to todos_path(source: 'today' ), 
+                data: { turbo_method: :post, turbo_stream: true },
+                class: "inline-flex items-center text-gray-400 hover:text-gray-700 transition-colors" do %>
+      <svg xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5 mr-1 text-gray-400 hover:text-gray-700 transition-colors"
+          fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 4v16m8-8H4" />
+      </svg>
+      タスクを追加
+    <% end %>
+  </div>
+
 </div>

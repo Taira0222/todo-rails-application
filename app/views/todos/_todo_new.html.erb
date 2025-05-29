@@ -1,0 +1,35 @@
+<li id="todo_<%= todo.id %>" class="border rounded p-4 mb-2">
+  <%= form_with model: todo,
+                url: todo_path(todo),
+                method: :patch,
+                data: {
+                  controller: "autosave",
+                  action:  "click@window->autosave#clickOutside",
+                  turbo_frame: "_top"
+                } do |f| %>
+
+    <!-- タイトル -->
+    <%= f.text_field :title, placeholder: "タイトルを入力",
+          class: "w-full text-lg font-semibold mb-2 focus:outline-none" %>
+
+    <!-- 説明 -->
+    <%= f.text_area :description, placeholder: "説明", rows: 2,
+          class: "w-full text-sm text-gray-600 resize-none focus:outline-none mb-4" %>
+
+    <!-- 日付／時間ピッカー -->
+    <div class="mt-4">
+      <%= f.text_field :due_at,
+            data: {
+              controller:       "flatpickr",
+              "flatpickr-enable-time":  "true",
+              "flatpickr-time_24hr":    "true",
+              "flatpickr-date-format":  "Y-m-d H:i",
+              "flatpickr-alt-input":    "true",
+              "flatpickr-alt-format":   "Y/m/d H:i"
+            },
+            class: "w-full border rounded p-2 focus:outline-none" %>
+    </div>
+
+
+  <% end %>
+</li>

@@ -21,11 +21,14 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
 
   <body class="flex flex-col min-h-screen">
     <%= render 'shared/header' %>
-    <%= render 'shared/flash' %>
+    <div id="flash">
+      <%= render "shared/flash" %>
+    </div>
 
     <main class="flex-grow">
       <%= yield %>

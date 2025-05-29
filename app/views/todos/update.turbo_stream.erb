@@ -1,0 +1,8 @@
+<% source = params[:source] %>
+
+<% if @todo.saved_change_to_done? %> <%# done のon/off があった場合 %>
+  <%= done_toggle_stream(@todo, source) %>
+<% else %>
+  <%= default_update_stream(@todo, source) %> <%# 内容の変更の場合(新規作成と編集の時に使用) %>
+<% end %>
+
