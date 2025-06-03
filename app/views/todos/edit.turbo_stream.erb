@@ -1,0 +1,4 @@
+<% source = params[:source]%>
+<%= turbo_stream.replace(dom_id(@todo)) do %>
+  <%= render partial: "todo_edit", locals: { todo: @todo, source: source } %>
+<% end %>

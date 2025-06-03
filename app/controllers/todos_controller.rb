@@ -1,20 +1,18 @@
 class TodosController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_todo, only: [:update, :destroy, :edit]  
+  before_action :set_todo, only: [:update, :destroy, :edit,:copy]  
 
-  def create
+  def new
     due_date = case params[:source]
     when 'today'
-      Date.current
+      Time.current
     when 'upcoming'
-      Date.tomorrow
-    when 'archived'
-      Date.yesterday
+      Time.current + 1.day
     else
-      Date.current # fallback
+      Time.current # fallback
     end
 
-    @todo = current_user.todos.create!(
+    @todo = current_user.todos.build(
       title: "",
       description: "",
       done: false, 
@@ -27,24 +25,65 @@ class TodosController < ApplicationController
     end
 
   end
-  
-  def edit
-  end
 
-  def update
-    
-    if @todo.update(todo_params)
+  def create
+    @todo = current_user.todos.build(todo_params)
+    if @todo.save
       respond_to do |format|
         format.turbo_stream
         format.html  { redirect_to today_path } # TODO: turboの実装しか考えてないのでpathは別途考える
       end
-    else  
-      format.turbo_stream {render turbo_stream: turbo_stream.replace(@todo, partial: "todo_new"), locals:{ todo: @todo}}
-      format.html { redirect_to today_path} # TODO: turboの実装しか考えてないのでpathは別途考える
+    else
+      respond_to do |format|
+        format.turbo_stream {render status: :unprocessable_entity}
+        format.html { redirect_to today_path} # TODO: turboの実装しか考えてないのでpathは別途考える
+      end
+    end
+  end
+  
+  def edit
+    respond_to do |format|
+      format.turbo_stream
+      format.html  { redirect_to today_path } # TODO: turboの実装しか考えてないのでpathは別途考える
+    end    
+  end
+
+  def update
+    @todo.update(todo_params)
+    respond_to do |format|
+      format.turbo_stream
+      format.html  { redirect_to today_path } # TODO: turboの実装しか考えてないのでpathは別途考える
     end
   end
 
   def destroy
+
+    if @todo.destroy
+      respond_to do |format|
+        format.turbo_stream   
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream {render status: :unprocessable_entity}
+      end
+    end    
+  end
+
+  def copy
+    duplicated_params = @todo.attributes.except("id", "position","created_at", "updated_at")
+    duplicated_params["title"] = "#{@todo.title} (コピー)" 
+
+    copy_todo = current_user.todos.build(duplicated_params)
+    if copy_todo.save
+      @todo = copy_todo
+      respond_to do |format|
+        format.turbo_stream   # app/views/todos/copy.turbo_stream.erb
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream { render status: :unprocessable_entity }
+      end
+    end
   end
 
 

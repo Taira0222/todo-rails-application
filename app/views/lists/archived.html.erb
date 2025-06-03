@@ -11,9 +11,9 @@
   </p>
 
   <!-- タスク一覧 -->
-  <ul id = "todos_archived" class="space-y-4">
-    <%=  render partial: 'todos/todo', collection: @todos, as: :todo, locals: { source: 'archived' }%>
-  </ul>
+  <div>
+    <%= render "todos_list", source: "archived" %>
+  </div>
 
 
 </div>

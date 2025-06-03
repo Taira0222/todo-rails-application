@@ -1,5 +1,7 @@
-<% source = params[:source] %>
-
-<%= turbo_stream.append "todos_#{source}" do %>
-  <%= render partial: "todo_new", locals: { todo: @todo } %>
+<% source = params[:source]%>
+<% if @todo.errors.any? %>
+  <%# validation error: フォーム partial へ差し替えてエラーメッセージ付きで再描画 %>
+  <%= turbo_stream.replace dom_id(@todo), partial: "todo_new", locals: { todo: @todo, source: source } %>
+<% else %>
+  <%= build_create_todo_stream(@todo,source) %> <%# 内容の変更の場合(新規作成と編集の時に使用) %>
 <% end %>

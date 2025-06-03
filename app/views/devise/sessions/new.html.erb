@@ -28,7 +28,7 @@
       </div>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name),
-            html: { class: "space-y-3 sm:space-y-5 w-full" }) do |f| %>
+            html: { class: "space-y-3 sm:space-y-5 w-full" , data: { turbo: false  }}) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div>

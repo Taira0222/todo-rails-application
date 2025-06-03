@@ -18,5 +18,7 @@ Rails.application.routes.draw do
     get '/account/edit', to: 'users/registrations#edit'
   end 
 
-  resources :todos, only: [:create, :edit, :update, :destroy] 
+  resources :todos, only: [:new, :create, :edit, :update, :destroy]  do
+    member { post :copy }
+  end
 end

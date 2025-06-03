@@ -1,12 +1,9 @@
-<turbo-frame id ="add_todo_button_<%= source %>">
-  <li id="<%= dom_id(todo) %>" class="list-none border rounded p-4 mb-2 ">
+<turbo-frame id="<%= dom_id(todo) %>">
+  <li  class="list-none border rounded p-4 mb-2 ">
     <%= render "devise/shared/error_messages", resource: todo %>
     <%= form_with model: todo,
-                  data: {
-                    controller: "autosave",
-                    action:  "click@window->autosave#clickOutside",
-                    turbo_frame: "_top"
-                  } do |f| %>
+                  data: { turbo_frame: "_top"} do |f| %>
+
       <%= hidden_field_tag :source, source %>
       <!-- タイトル -->
       <%= f.text_field :title, placeholder: "タイトルを入力",
@@ -36,13 +33,13 @@
 
         <!-- 右側：作成／キャンセルボタン -->
         <div class="flex space-x-2 mr-10">
-          <%= f.submit "作成",
+          <%= f.submit "更新",
                 class: "px-4 py-2 bg-blue-500 text-white rounded shadow 
                         hover:bg-blue-600 focus:outline-none",
-                data: { disable_with: "作成中..." } %>
+                data: { disable_with: "更新中..." } %> 
 
           <%= link_to "キャンセル",
-                public_send("#{source}_path", source: source),
+                public_send("#{source}_path", source: source, mode: "edit", todo_id: todo.id),
                 data: { turbo_stream: true },
                 class: "px-4 py-2 bg-gray-200 text-gray-700 rounded 
                         hover:bg-gray-300 focus:outline-none" %>

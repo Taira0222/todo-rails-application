@@ -18,7 +18,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_193916) do
     t.bigint "user_id", null: false
     t.string "title"
     t.text "description"
-    t.integer "position"
     t.boolean "done", default: false, null: false
     t.datetime "due_at"
     t.datetime "created_at", null: false

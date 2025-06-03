@@ -11,24 +11,12 @@
   </p>
 
   <!-- タスク一覧 -->
-  <ul id = "todos_upcoming" class="space-y-4">
-    <%=  render partial: 'todos/todo', collection: @todos, as: :todo, locals: { source: 'upcoming' }%>
-  </ul>
-
-  <!-- タスク追加リンク -->
-  <div class="mt-6">
-    <%= link_to todos_path(source: 'upcoming'), 
-                method: :post,
-                data: {turbo_stream: true},
-                class: "inline-flex items-center text-gray-400 hover:text-gray-700 transition-colors" do %>
-      <svg xmlns="http://www.w3.org/2000/svg"
-          class="w-5 h-5 mr-1 text-gray-400 hover:text-gray-700 transition-colors"
-          fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M12 4v16m8-8H4" />
-      </svg>
-      タスクを追加
-    <% end %>
+  <div>
+    <%= render "todos_list", source: "upcoming" %>
   </div>
 
+  <!-- タスク追加リンク -->
+  <div>
+    <%= render "lists/add_todo_button", source: "upcoming" %>
+  </div>
 </div>
