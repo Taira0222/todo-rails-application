@@ -21,7 +21,7 @@ class DisplayTest < ActionDispatch::IntegrationTest
     get today_path
     assert_select 'a[href=?]', today_path, count:2 
     assert_select 'a[href=?]', upcoming_path
-    assert_select 'a[href=?]', inbox_path
+    assert_select 'a[href=?]', archived_path
     assert_match @user.name, response.body
     assert_match 'アカウント情報', response.body
     assert_match 'ログアウト', response.body

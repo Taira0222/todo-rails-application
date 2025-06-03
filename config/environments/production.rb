@@ -92,7 +92,7 @@ Rails.application.configure do
   :enable_starttls_auto=> true
   }
  
-
+  config.time_zone = "Asia/Tokyo"
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com

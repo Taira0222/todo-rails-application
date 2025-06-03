@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ListTest < ActiveSupport::TestCase
+class TodoTest < ActiveSupport::TestCase
   # def test_truth
   #   assert true
   # end

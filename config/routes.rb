@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/confirmation_sent', to: 'static_pages#confirmation_sent', as: :confirmation_sent 
   get "/today", to: 'lists#today', as: :today
   get "/upcoming", to: 'lists#upcoming', as: :upcoming
-  get "/inbox", to: 'lists#inbox', as: :inbox
+  get "/archived", to: 'lists#archived', as: :archived
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions:      'users/sessions',
@@ -16,5 +16,9 @@ Rails.application.routes.draw do
     get '/login', to: 'users/sessions#new'
     delete '/logout', to: 'users/sessions#destroy'
     get '/account/edit', to: 'users/registrations#edit'
-  end  
+  end 
+
+  resources :todos, only: [:new, :create, :edit, :update, :destroy]  do
+    member { post :copy }
+  end
 end

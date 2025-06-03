@@ -17,8 +17,8 @@ class ListsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  def test_get_inbox
-    get inbox_path
+  def test_get_archived
+    get archived_path
     assert_response :success
   end
 end

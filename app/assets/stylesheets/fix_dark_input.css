@@ -1,5 +1,0 @@
-@layer base {
-  html {
-    color-scheme: light; /* WebKit の自動ダーク変換を無効化 */
-  }
-}

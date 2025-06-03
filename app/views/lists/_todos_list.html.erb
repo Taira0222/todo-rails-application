@@ -1,0 +1,12 @@
+<% @todos.group_by { |todo| todo.due_at.to_date }.each do |date, todos_for_date| %> <%# todos_for_date は同じ日(6/1等)の塊のtodo%>
+  <div class="mb-6">
+    <!-- 日付見出し -->
+    <h2 class="text-xl font-semibold text-gray-700 mb-2">
+      <%= I18n.l(date, format: :todo) %>
+    </h2>
+    <!-- タスク一覧 -->
+    <ul id = "todos_<%= source %>" class="space-y-4 list-none">
+      <%= render partial: "todos/todo", collection: todos_for_date, as: :todo , locals: { source: source }%>
+    </ul>
+  </div>
+<% end %>

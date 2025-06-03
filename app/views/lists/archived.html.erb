@@ -1,6 +1,6 @@
 <div class="max-w-2xl mx-auto px-4 py-6">
   <!-- 見出し -->
-  <h1 class="text-2xl font-bold mb-2">今日</h1>
+  <h1 class="text-2xl font-bold mb-2">アーカイブ</h1>
   <p class="flex items-center text-gray-500 text-sm mb-6">
     <!-- todoアイコン -->
     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -10,15 +10,10 @@
     <%= pluralize(@todos.count, "件") %>のタスク
   </p>
 
-  <!-- 日付ごとのグループ化 -->
+  <!-- タスク一覧 -->
   <div>
-    <%= render "todos_list", source: "today" %>
+    <%= render "todos_list", source: "archived" %>
   </div>
 
-  <!-- タスク追加リンク -->
-  <div>
-    <%= render "add_todo_button", source: "today" %>
-  </div>
-  
 
 </div>

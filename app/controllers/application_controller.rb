@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  # registrations_controllerのstrong parameterにnameを追加した。
+  # ログインとアカウント更新のstrong parameterにnameを追加した。
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
