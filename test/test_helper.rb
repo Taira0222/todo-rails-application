@@ -2,7 +2,11 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 require "minitest/reporters"
+require "omniauth-google-oauth2" 
 Minitest::Reporters.use!
+OmniAuth.config.test_mode = true
+
+
 
 module ActiveSupport
   class TestCase
@@ -12,6 +16,9 @@ module ActiveSupport
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
-    # Add more helper methods to be used by all tests here...
+    # Mockを上書き可能
+    def mock_google_oauth(hash = OmniAuth.config.mock_auth[:google_oauth2])
+      OmniAuth.config.mock_auth[:google_oauth2] = hash
+    end
   end
 end

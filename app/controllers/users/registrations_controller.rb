@@ -17,6 +17,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
+    # view 意外のアクセスがあった場合にemailを変更できないように設定
+    if current_user.provider.present?
+      params[:user].delete(:email)
+    end
     super
   end
 

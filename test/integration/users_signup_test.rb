@@ -40,7 +40,5 @@ class UsersSignupTest < UsersSignup
     mail = ActionMailer::Base.deliveries.last
     assert_equal ["test@gmail.com"], mail.to
     assert_match "【重要】アカウントの有効化について", mail.subject
-
-
   end
 end

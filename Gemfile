@@ -49,6 +49,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  # 環境変数を管理するgem
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -72,3 +74,6 @@ gem "devise", "~> 4.9"
 gem "devise-i18n","1.12.1" # devise周りを日本語に
 gem "rails-i18n", "8.0.0" # rails 全般を日本語に
 gem "tailwindcss-rails", "3.3.1"
+# googleのOAuth実装
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
