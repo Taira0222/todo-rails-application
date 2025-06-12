@@ -1,0 +1,22 @@
+today:
+  user: user1
+  title: 'today_todo'
+  description: 'I have to do it today'
+  done: false
+  due_at: <%= Time.current %>
+
+upcoming:
+  user: user1 
+  title: 'upcoming_todo'
+  description: "I'll have to do it tomorrow"
+  done: false
+  due_at: <%= Time.current + 1.day %>
+
+archived:
+  user: user1 
+  title: 'archived_todo'
+  description: "I had to do it "
+  done: false
+  due_at: <%= Time.current - 1.day %>
+
+

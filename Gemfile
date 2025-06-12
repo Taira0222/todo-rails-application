@@ -50,14 +50,14 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
   # 環境変数を管理するgem
-  gem 'dotenv-rails'
+  gem "dotenv-rails"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem 'foreman'
-  gem 'faker', "3.5.1"
+  gem "foreman"
+  gem "faker", "3.5.1"
 end
 
 group :test do
@@ -65,15 +65,15 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "minitest-rails", "~> 8.0"
-  gem 'minitest-reporters', "1.7.1"
-  gem "rails-controller-testing", '1.0.5'
+  gem "minitest-reporters", "1.7.1"
+  gem "rails-controller-testing", "1.0.5"
 end
 
 
 gem "devise", "~> 4.9"
-gem "devise-i18n","1.12.1" # devise周りを日本語に
+gem "devise-i18n", "1.12.1" # devise周りを日本語に
 gem "rails-i18n", "8.0.0" # rails 全般を日本語に
 gem "tailwindcss-rails", "3.3.1"
 # googleのOAuth実装
-gem 'omniauth-google-oauth2'
-gem 'omniauth-rails_csrf_protection'
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"

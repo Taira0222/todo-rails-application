@@ -2,7 +2,7 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 require "minitest/reporters"
-require "omniauth-google-oauth2" 
+require "omniauth-google-oauth2"
 Minitest::Reporters.use!
 OmniAuth.config.test_mode = true
 

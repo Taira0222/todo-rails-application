@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
-  layout 'minimal', only: [:edit,:update]
+  layout "minimal", only: [ :edit, :update ]
   # GET /resource/password/new
   def new
     super

@@ -8,35 +8,32 @@ class UsersLogin < ActionDispatch::IntegrationTest
 end
 
 class UsersLoginTest < UsersLogin
-
-  test 'should not login with invalid email' do
-    post user_session_path, params: { user: { email: '',
-                                              password: 'password'} } 
+  test "should not login with invalid email" do
+    post user_session_path, params: { user: { email: "",
+                                              password: "password" } }
     assert_not flash.empty?
-    assert_match 'メールアドレス もしくはパスワードが不正です。', response.body
+    assert_match "メールアドレス もしくはパスワードが不正です。", response.body
   end
 
-  test 'should not login with invalid password' do
+  test "should not login with invalid password" do
     post user_session_path, params: { user: { email: @user.email,
-                                              password: ''} } 
+                                              password: "" } }
     assert_not flash.empty?
-    assert_match 'メールアドレス もしくはパスワードが不正です。', response.body
+    assert_match "メールアドレス もしくはパスワードが不正です。", response.body
   end
 
-  test 'should login with valid information' do
-    post user_session_path, params: { user: { email: @user.email, password: 'password' } }
+  test "should login with valid information" do
+    post user_session_path, params: { user: { email: @user.email, password: "password" } }
     assert_response :see_other
-    follow_redirect! 
+    follow_redirect!
     assert_not flash.empty?
-    assert_template 'lists/today'
+    assert_template "lists/today"
   end
-
 end
 
 
 class UsersLogoutTest < UsersLogin
-
-  test 'logout valid user' do
+  test "logout valid user" do
     # ログイン処理
     sign_in @user
     get today_path
@@ -45,7 +42,6 @@ class UsersLogoutTest < UsersLogin
     assert_redirected_to root_path
     follow_redirect!
     assert_not flash.empty?
-    assert_template 'static_pages/home'
+    assert_template "static_pages/home"
   end
-
 end

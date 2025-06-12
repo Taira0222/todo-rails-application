@@ -1,7 +1,6 @@
-#Preview all emails at http://localhost:3000/rails/mailers/devise_mailer
+# Preview all emails at http://localhost:3000/rails/mailers/devise_mailer
 
 class DeviseMailerPreview < ActionMailer::Preview
-
   # http://localhost:3000/rails/mailers/devise_mailer/confirmation_instructions
   def confirmation_instructions
     user = User.last
@@ -23,4 +22,3 @@ class DeviseMailerPreview < ActionMailer::Preview
     Devise::Mailer.reset_password_instructions(user, raw_token)
   end
 end
-
