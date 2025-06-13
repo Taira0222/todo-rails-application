@@ -67,6 +67,7 @@ group :test do
   gem "minitest-rails", "~> 8.0"
   gem "minitest-reporters", "1.7.1"
   gem "rails-controller-testing", "1.0.5"
+  gem "simplecov", require: false
 end
 
 

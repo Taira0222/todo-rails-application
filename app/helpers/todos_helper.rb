@@ -1,7 +1,7 @@
 module TodosHelper
   def build_toggle_done_stream(todo)
     if todo.due_at.to_date >= Date.current  # 今日以降 かつ done がtrueになったとき
-      if todo.done? # doneはチェック前の状態
+      if todo.done?
         move(todo, :archived, "アーカイブに移動しました。")
       else
         toggle_done_in_archive(todo)

@@ -1,14 +1,11 @@
 require "test_helper"
 
-class UsersSignup < ActionDispatch::IntegrationTest
+class SignupTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:user1)
     get signup_path
   end
-end
 
-
-class UsersSignupTest < UsersSignup
   test "invalid signup infomation" do
     assert_no_difference "User.count" do
       post user_registration_path, params: { user: { name: "",
