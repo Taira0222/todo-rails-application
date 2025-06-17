@@ -1,0 +1,5 @@
+class AddHasTimeToTodos < ActiveRecord::Migration[8.0]
+  def change
+    add_column :todos, :has_time, :boolean, default: false
+  end
+end
