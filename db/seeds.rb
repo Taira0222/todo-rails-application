@@ -21,7 +21,7 @@ end
 
 # users = User.order(:created_at).take(6)
 
-# users.each do |user| 
+# users.each do |user|
 #   3.times do
 #     title_today = Faker::Lorem.sentence(word_count: rand(2..5))
 #     description_today = Faker::Lorem.paragraph(sentence_count: 2)
@@ -43,5 +43,5 @@ end
 #       due_at: Time.current + rand(-3..7).days,
 #       done: false
 #     )
-#   end  
+#   end
 # end

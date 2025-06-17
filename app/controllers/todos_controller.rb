@@ -1,12 +1,12 @@
 class TodosController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_todo, only: [:update, :destroy, :edit,:copy]  
+  before_action :set_todo, only: [ :update, :destroy, :edit, :copy ]
 
   def new
     due_date = case params[:source]
-    when 'today'
+    when "today"
       Time.current
-    when 'upcoming'
+    when "upcoming"
       Time.current + 1.day
     else
       Time.current # fallback
@@ -15,15 +15,13 @@ class TodosController < ApplicationController
     @todo = current_user.todos.build(
       title: "",
       description: "",
-      done: false, 
+      done: false,
       due_at: due_date
     )
-    
+
     respond_to do |format|
       format.turbo_stream # create.turbo_stream.erb を参照
-      format.html { redirect_to today_path} # TODO: turboの実装しか考えてないのでpathは別途考える
     end
-
   end
 
   def create
@@ -31,21 +29,19 @@ class TodosController < ApplicationController
     if @todo.save
       respond_to do |format|
         format.turbo_stream
-        format.html  { redirect_to today_path } # TODO: turboの実装しか考えてないのでpathは別途考える
       end
     else
       respond_to do |format|
-        format.turbo_stream {render status: :unprocessable_entity}
-        format.html { redirect_to today_path} # TODO: turboの実装しか考えてないのでpathは別途考える
+        format.turbo_stream { render status: :unprocessable_entity }
       end
     end
   end
-  
+
   def edit
     respond_to do |format|
       format.turbo_stream
       format.html  { redirect_to today_path } # TODO: turboの実装しか考えてないのでpathは別途考える
-    end    
+    end
   end
 
   def update
@@ -57,21 +53,20 @@ class TodosController < ApplicationController
   end
 
   def destroy
-
     if @todo.destroy
       respond_to do |format|
-        format.turbo_stream   
+        format.turbo_stream
       end
     else
       respond_to do |format|
-        format.turbo_stream {render status: :unprocessable_entity}
+        format.turbo_stream { render status: :unprocessable_entity }
       end
-    end    
+    end
   end
 
   def copy
-    duplicated_params = @todo.attributes.except("id", "position","created_at", "updated_at")
-    duplicated_params["title"] = "#{@todo.title} (コピー)" 
+    duplicated_params = @todo.attributes.except("id", "position", "created_at", "updated_at")
+    duplicated_params["title"] = "#{@todo.title} (コピー)"
 
     copy_todo = current_user.todos.build(duplicated_params)
     if copy_todo.save
@@ -94,6 +89,8 @@ class TodosController < ApplicationController
   end
 
   def todo_params
-    params.require(:todo).permit(:title,:description, :position, :done, :due_at)
+    params.require(:todo).permit(:title, :description,
+                                 :due_date, :due_time, # 仮想属性
+                                 :has_time, :position, :done)
   end
 end

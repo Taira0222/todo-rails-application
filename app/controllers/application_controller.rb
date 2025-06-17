@@ -10,17 +10,16 @@ class ApplicationController < ActionController::Base
 
   # ログインとアカウント更新のstrong parameterにnameを追加した。
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name ])
+    devise_parameter_sanitizer.permit(:account_update, keys: [ :name ])
   end
 
   private
-  
+
   # remember_meが有効なら、today_pathにredirectする
   def redirect_signed_in_user_to_today_path
     if request.path == root_path
       redirect_to today_path
     end
   end
-
 end

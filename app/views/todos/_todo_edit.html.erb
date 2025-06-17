@@ -13,26 +13,54 @@
       <%= f.text_area :description, placeholder: "説明", rows: 2,
             class: "w-full text-sm text-gray-600 resize-none focus:outline-none mb-4" %>
 
-      <!-- 日付／時間ピッカー と ボタンを一行で、左右に振り分ける -->
-      <div class="flex items-center justify-between my-4">
-        <!-- 左側：日付／時間ピッカー -->
+      <!-- ─── 日付＋時刻まわり ─── -->
+      <div class="flex flex-col bg-white border border-gray-200 rounded p-4 space-y-3">
+        <!-- 1行目：日付ピッカー -->
         <div>
-          <%= f.text_field :due_at,
+          <%= f.text_field :due_date,
+                value: todo.due_at&.to_date,
                 data: {
                   controller:              "flatpickr",
-                  "flatpickr-enable-time": "true",
-                  "flatpickr-time_24hr":   "true",
-                  "flatpickr-date-format": "Y-m-d H:i",
+                  "flatpickr-enable-time": "false",
+                  "flatpickr-date-format": "Y-m-d",
                   "flatpickr-alt-input":   "true",
-                  "flatpickr-alt-format":  "n月j日 H:i",
+                  "flatpickr-alt-format":  "Y年n月j日",
                   "flatpickr-locale":      "ja"
                 },
-                class: "w-40 pl-1 pr-3 py-2 border border-gray-300 rounded 
-                        bg-white focus:outline-none cursor-pointer" %>
+                class: "w-40 pl-2 pr-3 py-2 border rounded cursor-pointer focus:outline-none" %>
         </div>
 
+        <!-- 2行目：チェック＋時間ピッカー -->
+        <div class="flex items-center space-x-2" data-controller="time-toggle">
+          <%= f.check_box :has_time,
+                data: { 
+                  time_toggle_target: "checkbox",
+                  action:             "change->time-toggle#toggle"
+                },
+                class: "mt-1" %>
+          <%= f.label :has_time, "時刻を設定する", class: "text-sm text-gray-700" %>
+
+          <div data-time-toggle-target="timepicker" class="hidden">
+            <%= f.text_field :due_time,
+                  value: (todo.has_time? ? todo.due_at.strftime("%H:%M") : nil),
+                  placeholder: "HH:MM",
+                  data: {
+                    controller:              "flatpickr",
+                    "flatpickr-enable-time": "true",
+                    "flatpickr-no-calendar": "true",
+                    "flatpickr-date-format": "H:i",
+                    "flatpickr-alt-input":   "true",
+                    "flatpickr-alt-format":  "H:i",
+                    "flatpickr-time_24hr":   "true",
+                    "flatpickr-locale":      "ja"
+                  },
+                  class: "w-24 pl-2 pr-3 py-2 border rounded cursor-pointer focus:outline-none" %>
+          </div>
+        </div>
+      </div>
+
         <!-- 右側：作成／キャンセルボタン -->
-        <div class="flex space-x-2 mr-10">
+        <div class="flex justify-end space-x-2">
           <%= f.submit "更新",
                 class: "px-4 py-2 bg-blue-500 text-white rounded shadow 
                         hover:bg-blue-600 focus:outline-none",
@@ -44,7 +72,6 @@
                 class: "px-4 py-2 bg-gray-200 text-gray-700 rounded 
                         hover:bg-gray-300 focus:outline-none" %>
         </div>
-      </div> 
     <% end %>
   </li>
 </turbo-frame>

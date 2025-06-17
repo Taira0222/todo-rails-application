@@ -1,26 +1,45 @@
 class Todo < ApplicationRecord
   belongs_to :user
+  before_validation :merge_due_date_and_time
+
+  attr_accessor :due_date, :due_time # 仮想属性として due_at, due_time を設定
 
   # listsコントローラで呼び出している
   scope :today, -> {
-  where("due_at BETWEEN :start AND :end AND done = :done", 
-        start: Time.zone.today.beginning_of_day, 
-        end: Time.zone.today.end_of_day, 
+  where("due_at BETWEEN :start AND :end AND done = :done",
+        start: Time.zone.today.beginning_of_day,
+        end: Time.zone.today.end_of_day,
         done: false)
   }
 
   scope :upcoming, -> {
-    where("due_at > :end_of_today AND done = :done", 
-          end_of_today: Time.zone.now.end_of_day, 
+    where("due_at > :end_of_today AND done = :done",
+          end_of_today: Time.zone.now.end_of_day,
           done: false)
   }
 
   scope :archived, -> {
-    where("due_at < :start_of_today OR done = :done", 
-          start_of_today: Time.zone.now.beginning_of_day, 
+    where("due_at < :start_of_today OR done = :done",
+          start_of_today: Time.zone.now.beginning_of_day,
           done: true)
   }
-  # update 
-  validates :title, presence: true, length: { maximum: 50}
-  validates :description, length: { maximum: 140}
+  validates :title, presence: true, length: { maximum: 50 }
+  validates :description, length: { maximum: 140 }
+  validates :due_at, presence: true
+  validates :due_time, presence: true, if: :has_time? # has_time がtrueの時のみバリデーション
+
+  private
+    def merge_due_date_and_time
+      # 日付の00:00をデフォルトタイムスタンプとする
+      timestamp = due_date.in_time_zone.beginning_of_day
+      if has_time?
+        if due_time.present?
+          # 時間,分をそれぞれhour,min に代入
+          hour, min = due_time.split(":").map(&:to_i)
+          timestamp = timestamp.change(hour: hour, min: min)
+        end
+        # due_time が空なら「00:00」のまま
+      end
+      self.due_at = timestamp
+    end
 end

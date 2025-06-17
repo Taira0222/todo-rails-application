@@ -3,7 +3,6 @@ class ListsController < ApplicationController
   def today
     @todos = current_user.todos.today
     render_after_cancel_button("today")
-    
   end
 
   def upcoming
@@ -14,7 +13,7 @@ class ListsController < ApplicationController
   def archived
     @todos = current_user.todos.archived.order(due_at: :desc)
   end
-  
+
   private
     # 新規作成・編集 キャンセルボタンの後の処理
     def render_after_cancel_button(source)
@@ -23,7 +22,7 @@ class ListsController < ApplicationController
         format.turbo_stream do
           if params[:mode] == "edit" && params[:todo_id].present?
             @todo = current_user.todos.find(params[:todo_id])
-            render turbo_stream: 
+            render turbo_stream:
             turbo_stream.replace(
               "todo_#{@todo.id}",
               partial: "todos/todo",
@@ -36,9 +35,8 @@ class ListsController < ApplicationController
               partial:  "lists/add_todo_button",
               locals:   { source: source }
             )
-          end        
+          end
         end
       end
     end
-
 end

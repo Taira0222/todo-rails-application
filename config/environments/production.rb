@@ -80,18 +80,18 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method =:smtp
-  host = 'todo-rails-application.onrender.com'
-  config.action_mailer.default_url_options = {host:host}
+  host = "todo-rails-application.onrender.com"
+  config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings ={
-  :port => 587,
-  :address =>"smtp.sendgrid.net",
-  :user_name =>"apikey",
-  :password => ENV["SENDGRID_API_KEY"],
-  :domain => host,
-  :authentication =>:plain,
-  :enable_starttls_auto=> true
+  port: 587,
+  address: "smtp.sendgrid.net",
+  user_name: "apikey",
+  password: ENV["SENDGRID_API_KEY"],
+  domain: host,
+  authentication: :plain,
+  enable_starttls_auto: true
   }
- 
+
   config.time_zone = "Asia/Tokyo"
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
