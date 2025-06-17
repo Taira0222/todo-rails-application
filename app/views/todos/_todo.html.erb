@@ -62,7 +62,7 @@
       </div>
     <% end %>
 
-    <% if todo.due_at.present? %>
+    <% if todo.has_time? %>
       <div class="flex items-center text-sm text-red-500 mt-1">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

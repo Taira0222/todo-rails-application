@@ -2,10 +2,12 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   test "user should have many todos and valid dependent" do
+    # user2 はtodo を所有していない
     user = users(:user2)
-
-    todo1 = user.todos.create(title: "Todo 1")
-    todo2 = user.todos.create(title: "Todo 2")
+    title1 = "Todo 1"
+    title2 = "Todo 2"
+    todo1 = todo_create(user, title1)
+    todo2 = todo_create(user, title2)
     # has_manyの確認
     assert_equal 2, user.todos.count
     assert_includes user.todos, todo1

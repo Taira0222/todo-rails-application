@@ -21,7 +21,6 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream # create.turbo_stream.erb を参照
-      format.html { redirect_to today_path } # TODO: turboの実装しか考えてないのでpathは別途考える
     end
   end
 
@@ -30,12 +29,10 @@ class TodosController < ApplicationController
     if @todo.save
       respond_to do |format|
         format.turbo_stream
-        format.html  { redirect_to today_path } # TODO: turboの実装しか考えてないのでpathは別途考える
       end
     else
       respond_to do |format|
         format.turbo_stream { render status: :unprocessable_entity }
-        format.html { redirect_to today_path } # TODO: turboの実装しか考えてないのでpathは別途考える
       end
     end
   end
@@ -92,6 +89,8 @@ class TodosController < ApplicationController
   end
 
   def todo_params
-    params.require(:todo).permit(:title, :description, :position, :done, :due_at)
+    params.require(:todo).permit(:title, :description,
+                                 :due_date, :due_time, # 仮想属性
+                                 :has_time, :position, :done)
   end
 end

@@ -19,6 +19,22 @@ module ActiveSupport
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
+
+    def todo_create(user,
+                    title,
+                    description: "description",
+                    due_date: Time.zone.now.to_date,
+                    due_time: Time.zone.now.strftime("%H:%M"),
+                    has_time: true)
+      Todo.create(
+        user: user,
+        title: title,
+        description: description,
+        due_date: due_date,
+        due_time: due_time,
+        has_time: has_time
+      )
+    end
   end
 end
 

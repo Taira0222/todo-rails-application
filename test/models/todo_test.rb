@@ -7,41 +7,43 @@ class TodoTest < ActiveSupport::TestCase
 
   test "todo should belong to user" do
     todo = Todo.new(title: "Belong to user",
-                    user: @user)
+                    user: @user,
+                    due_date: Time.zone.now.to_date,
+                    due_time: Time.zone.now.strftime("%H:%M"),
+                    has_time: true
+                  )
     assert todo.valid?
   end
 
   test "50 charactors title" do
     title = "a" * 50
-    todo = @user.todos.create(title: title)
+    todo = todo_create(@user, title)
     assert todo.valid?
   end
 
   test "51 charactors title" do
     title = "a" * 51
-    todo = @user.todos.create(title: title)
+    todo = todo_create(@user, title)
     assert_not todo.valid?
   end
 
   test "Do not allow empty title" do
     title = ""
-    todo = @user.todos.create(title: title)
+    todo = todo_create(@user, title)
     assert_not todo.valid?
   end
 
   test "140 charactors of description" do
     title = "test"
     description = "a" * 140
-    todo = @user.todos.create(title: title,
-                              description: description)
+    todo = todo_create(@user, title, description: description)
     assert todo.valid?
   end
 
   test "141 charactors of description" do
     title = "test"
     description = "a" * 141
-    todo = @user.todos.create(title: title,
-                              description: description)
+    todo = todo_create(@user, title, description: description)
     assert_not todo.valid?
   end
 
@@ -61,14 +63,18 @@ class TodoTest < ActiveSupport::TestCase
       title: "done",
       description: "done",
       done: true,
-      due_at: Time.zone.tomorrow,
+      due_date: Time.zone.today.to_date,
+      due_time: Time.zone.now.strftime("%H:%M"),
+      has_time: true
     )
     past_todo = Todo.create(
       user: @user,
       title: "yesterday",
       description: "yesterday",
       done: false,
-      due_at: Time.zone.yesterday
+      due_date: Time.zone.yesterday.to_date,
+      due_time: Time.zone.yesterday.strftime("%H:%M"),
+      has_time: true
     )
     assert_includes Todo.archived, done_todo
     assert_includes Todo.archived, past_todo
