@@ -1,19 +1,12 @@
- <li id="<%= dom_id(todo) %>" class="group flex items-center justify-between gap-6 px-6 py-4 border-b hover:bg-gray-50 transition-colors">
+ <li id="<%= dom_id(todo) %>" class="group flex items-center justify-between gap-6 px-6 py-4 border-b rounded-sm hover:bg-gray-200 transition-colors">
 
-  <!-- ハンドルとチェックボックス -->
   <div class="flex items-center space-x-3 shrink-0">
-    <!-- 6点ハンドル 機能拡張する場合 -->
-    <%# <div class="w-4 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-move">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M2 4a2 2 0 114 0 2 2 0 01-4 0zM2 10a2 2 0 114 0 2 2 0 01-4 0zM2 16a2 2 0 114 0 2 2 0 01-4 0zM8 4a2 2 0 114 0 2 2 0 01-4 0zM8 10a2 2 0 114 0 2 2 0 01-4 0zM8 16a2 2 0 114 0 2 2 0 01-4 0z"/>
-      </svg>
-    </div> %>
-
     <!-- チェックボタン -->
     <%= form_with model: todo,
                   data: { "turbo-method": :patch,
                           controller: "done-button-submit"  }, 
                   class: "shrink-0" do |f| %>
+      <%= hidden_field_tag :source, source %>
       <%= f.check_box :done, 
                       data: { action: "change->done-button-submit#submit"},
                       class: "w-6 h-6 text-blue-500 border-gray-300 rounded focus:ring-blue-400"  %>
@@ -23,8 +16,8 @@
   <!-- 本文（タイトル・説明・日付）ダブルクリックで編集 -->
   <div class="flex-1  min-w-0 mx-4 cursor-pointer <%= 'opacity-50 line-through' if todo.done? %> "
         data-controller="edit"
-        data-edit-url-value="<%= edit_todo_path(todo, source: source, format: :turbo_stream) %>">
-
+        data-edit-url-value="<%= edit_todo_path(todo, source: source, format: :turbo_stream) %>"
+        title="クリックで編集">
     <p class="text-base font-semibold text-gray-800"><%= todo.title %></p>
 
     <% if todo.description.present? %>
@@ -83,6 +76,12 @@
     </summary>
     <ul class="absolute right-0 mt-2 w-36 bg-white border rounded shadow-lg z-10">
       <li>
+        <%= link_to "編集", 
+              edit_todo_path(todo, source: source), 
+              data: { turbo_stream: true },
+              class: "block w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-800" %>
+      </li>
+      <li>
         <%= button_to "削除", todo_path(todo), 
               method: :delete, 
               data: { turbo_stream: true },
@@ -90,9 +89,8 @@
       </li>
       <li>
         <%= button_to "複製", 
-              copy_todo_path(todo),
+              copy_todo_path(todo, source: source),
               method: :post,
-              params: { source: source },
               data: { turbo_stream: true},
               class: "block w-full text-left px-4 py-2 hover:bg-gray-100" %>
       </li>

@@ -13,6 +13,7 @@ ja:
         password_confirmation: パスワード（確認用）
       todo:
         title: 'タイトル'
+        due_time: '実施時間'
   date:
     abbr_day_names:
       - 日

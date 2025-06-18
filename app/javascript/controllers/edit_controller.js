@@ -7,7 +7,7 @@ export default class extends Controller {
   };
   connect() {
     // 要素に dblclick イベントをバインド
-    this.element.addEventListener('dblclick', this.navigate.bind(this));
+    this.element.addEventListener('click', this.navigate.bind(this));
   }
 
   navigate() {
