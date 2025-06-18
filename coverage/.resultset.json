@@ -251,97 +251,6 @@
           }
         }
       },
-      "/home/vscode/environment/todo-rails-application/app/controllers/lists_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          9,
-          9,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          1,
-          10,
-          10,
-          10,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "branches": {
-          "[:if, 0, 23, 10, 38, 13]": {
-            "[:then, 1, 24, 12, 30, 13]": 0,
-            "[:else, 2, 32, 12, 37, 13]": 0
-          }
-        }
-      },
-      "/home/vscode/environment/todo-rails-application/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          0,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          72,
-          72,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          26,
-          1,
-          null,
-          null,
-          null
-        ],
-        "branches": {
-          "[:if, 0, 4, 2, 6, 5]": {
-            "[:then, 1, 5, 4, 5, 35]": 0,
-            "[:else, 2, 4, 2, 6, 5]": 1
-          },
-          "[:if, 3, 21, 4, 23, 7]": {
-            "[:then, 4, 22, 6, 22, 28]": 1,
-            "[:else, 5, 21, 4, 23, 7]": 25
-          }
-        }
-      },
       "/home/vscode/environment/todo-rails-application/app/controllers/users/registrations_controller.rb": {
         "lines": [
           null,
@@ -414,35 +323,96 @@
           }
         }
       },
-      "/home/vscode/environment/todo-rails-application/app/controllers/users/sessions_controller.rb": {
+      "/home/vscode/environment/todo-rails-application/app/controllers/application_controller.rb": {
         "lines": [
-          null,
-          null,
           1,
-          null,
           1,
-          19,
-          null,
-          null,
-          null,
           1,
-          11,
-          null,
-          null,
-          null,
           1,
           0,
           null,
           null,
+          null,
           1,
           null,
           null,
           1,
-          4,
+          72,
+          72,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          26,
+          1,
+          null,
           null,
           null
         ],
-        "branches": {}
+        "branches": {
+          "[:if, 0, 4, 2, 6, 5]": {
+            "[:then, 1, 5, 4, 5, 35]": 0,
+            "[:else, 2, 4, 2, 6, 5]": 1
+          },
+          "[:if, 3, 21, 4, 23, 7]": {
+            "[:then, 4, 22, 6, 22, 28]": 1,
+            "[:else, 5, 21, 4, 23, 7]": 25
+          }
+        }
+      },
+      "/home/vscode/environment/todo-rails-application/app/controllers/lists_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          9,
+          9,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          10,
+          10,
+          10,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "branches": {
+          "[:if, 0, 23, 10, 38, 13]": {
+            "[:then, 1, 24, 12, 30, 13]": 0,
+            "[:else, 2, 32, 12, 37, 13]": 0
+          }
+        }
       },
       "/home/vscode/environment/todo-rails-application/app/controllers/users/passwords_controller.rb": {
         "lines": [
@@ -485,6 +455,48 @@
         ],
         "branches": {}
       },
+      "/home/vscode/environment/todo-rails-application/app/controllers/static_pages_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null
+        ],
+        "branches": {}
+      },
+      "/home/vscode/environment/todo-rails-application/app/controllers/users/sessions_controller.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          19,
+          null,
+          null,
+          null,
+          1,
+          11,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          4,
+          null,
+          null
+        ],
+        "branches": {}
+      },
       "/home/vscode/environment/todo-rails-application/app/controllers/users/confirmations_controller.rb": {
         "lines": [
           null,
@@ -515,18 +527,6 @@
           null,
           1,
           0,
-          null,
-          null
-        ],
-        "branches": {}
-      },
-      "/home/vscode/environment/todo-rails-application/app/controllers/static_pages_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          null,
-          1,
           null,
           null
         ],
@@ -740,7 +740,7 @@
         "branches": {}
       }
     },
-    "timestamp": 1750147718
+    "timestamp": 1750148879
   },
   "Integration Tests": {
     "coverage": {

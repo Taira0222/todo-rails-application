@@ -12,6 +12,7 @@ class ListsController < ApplicationController
 
   def archived
     @todos = current_user.todos.archived.order(due_at: :desc)
+    render_after_cancel_button("archived")
   end
 
   private

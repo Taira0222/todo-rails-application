@@ -30,7 +30,10 @@ class Todo < ApplicationRecord
 
   private
     def merge_due_date_and_time
-      # 日付の00:00をデフォルトタイムスタンプとする
+      # doneボタンなど入力しない場合にエラーにならない対策
+      return unless due_date
+      # 日付の23:59:59をデフォルトタイムスタンプとする
+      # 日付が変わるまで today or upcoming のtodo が移動しなくなる
       timestamp = due_date.in_time_zone.beginning_of_day
       if has_time?
         if due_time.present?
@@ -38,7 +41,7 @@ class Todo < ApplicationRecord
           hour, min = due_time.split(":").map(&:to_i)
           timestamp = timestamp.change(hour: hour, min: min)
         end
-        # due_time が空なら「00:00」のまま
+        # due_time が空なら「23:59:59」のまま
       end
       self.due_at = timestamp
     end

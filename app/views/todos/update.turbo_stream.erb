@@ -1,10 +1,14 @@
 <% source = params[:source].presence %>  <%# 空文字もnil とする。 %>
+<% puts source %>
 
 <% if @todo.errors.any? %>
+  <% puts "validation エラー: フォーム再描画" %>
   <%# validation error: フォーム partial へ差し替えてエラーメッセージ付きで再描画 %>
   <%= turbo_stream.replace dom_id(@todo), partial: "todo_edit", locals: { todo: @todo, source: source } %>
-<% elsif source %>
-  <%= build_update_todo_stream(@todo,source) %> <%# 内容の変更の場合(新規作成と編集の時に使用) %>
+<% elsif @todo.saved_change_to_done? %>
+  <% puts "done チェック変更: build_toggle_done_stream 実行" %>
+  <%= build_toggle_done_stream(@todo,source) %>
 <% else %>
-  <%= build_toggle_done_stream(@todo) %>
+  <% puts "通常の編集: build_update_todo_stream 実行" %>
+  <%= build_update_todo_stream(@todo,source) %> <%# 内容の変更の場合 %>
 <% end %>
