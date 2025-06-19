@@ -45,6 +45,13 @@
       "/home/vscode/environment/todo-rails-application/app/helpers/todos_helper.rb": {
         "lines": [
           1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
           1,
           0,
           0,
@@ -91,25 +98,55 @@
           null,
           null,
           1,
+          null,
           0,
+          0,
+          null,
+          null,
           0,
           0,
           0,
           0,
           null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
           0,
           null,
           null,
           null,
           1,
           0,
+          null,
+          0,
+          null,
           0,
           null,
           null,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
           null,
           null,
           1,
           0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
           null,
           null,
           null,
@@ -123,41 +160,46 @@
           null
         ],
         "branches": {
-          "[:if, 0, 3, 4, 11, 7]": {
-            "[:then, 1, 4, 6, 8, 9]": 0,
-            "[:else, 2, 9, 4, 11, 7]": 0
+          "[:if, 0, 10, 4, 18, 7]": {
+            "[:then, 1, 11, 6, 15, 9]": 0,
+            "[:else, 2, 16, 4, 18, 7]": 0
           },
-          "[:if, 3, 4, 6, 8, 9]": {
-            "[:then, 4, 5, 8, 5, 72]": 0,
-            "[:else, 5, 7, 8, 7, 36]": 0
+          "[:if, 3, 11, 6, 15, 9]": {
+            "[:then, 4, 12, 8, 12, 67]": 0,
+            "[:else, 5, 14, 8, 14, 44]": 0
           },
-          "[:if, 6, 9, 4, 11, 7]": {
-            "[:then, 7, 10, 6, 10, 9]": 0,
-            "[:else, 8, 9, 4, 11, 7]": 0
+          "[:if, 6, 16, 4, 18, 7]": {
+            "[:then, 7, 17, 6, 17, 9]": 0,
+            "[:else, 8, 16, 4, 18, 7]": 0
           },
-          "[:if, 9, 48, 6, 55, 9]": {
-            "[:then, 10, 49, 8, 49, 119]": 0,
-            "[:else, 11, 50, 6, 55, 9]": 0
+          "[:if, 9, 56, 6, 58, 9]": {
+            "[:then, 10, 57, 8, 57, 31]": 0,
+            "[:else, 11, 56, 6, 58, 9]": 0
           },
-          "[:if, 12, 49, 8, 49, 119]": {
-            "[:then, 13, 49, 31, 49, 57]": 0,
-            "[:else, 14, 49, 60, 49, 119]": 0
+          "[:case, 12, 60, 20, 64, 9]": {
+            "[:when, 13, 61, 20, 61, 29]": 0,
+            "[:when, 14, 62, 20, 62, 29]": 0,
+            "[:else, 15, 63, 20, 63, 26]": 0
           },
-          "[:if, 15, 50, 6, 55, 9]": {
-            "[:then, 16, 51, 8, 52, 72]": 0,
-            "[:else, 17, 54, 8, 54, 106]": 0
+          "[:if, 16, 66, 6, 73, 9]": {
+            "[:then, 17, 67, 8, 68, 34]": 0,
+            "[:else, 18, 70, 8, 72, 48]": 0
           },
-          "[:if, 18, 54, 8, 54, 106]": {
-            "[:then, 19, 54, 28, 54, 54]": 0,
-            "[:else, 20, 54, 57, 54, 106]": 0
+          "[:if, 19, 86, 6, 89, 9]": {
+            "[:then, 20, 87, 8, 88, 48]": 0,
+            "[:else, 21, 86, 6, 89, 9]": 0
           },
-          "[:if, 21, 73, 15, 73, 122]": {
-            "[:then, 22, 73, 55, 73, 84]": 0,
-            "[:else, 23, 73, 87, 73, 122]": 0
+          "[:if, 22, 96, 6, 106, 9]": {
+            "[:then, 23, 97, 8, 100, 7]": 0,
+            "[:else, 24, 102, 8, 105, 7]": 0
           },
-          "[:if, 24, 74, 13, 74, 71]": {
-            "[:then, 25, 74, 53, 74, 59]": 0,
-            "[:else, 26, 74, 62, 74, 71]": 0
+          "[:if, 25, 110, 15, 110, 131]": {
+            "[:then, 26, 110, 64, 110, 93]": 0,
+            "[:else, 27, 110, 96, 110, 131]": 0
+          },
+          "[:if, 28, 111, 13, 111, 80]": {
+            "[:then, 29, 111, 62, 111, 68]": 0,
+            "[:else, 30, 111, 71, 111, 80]": 0
           }
         }
       },
@@ -228,6 +270,9 @@
           1,
           null,
           15,
+          null,
+          null,
+          15,
           15,
           15,
           null,
@@ -241,13 +286,17 @@
           null
         ],
         "branches": {
-          "[:if, 0, 35, 6, 42, 9]": {
-            "[:then, 1, 36, 8, 40, 11]": 15,
-            "[:else, 2, 35, 6, 42, 9]": 0
+          "[:unless, 0, 34, 6, 34, 28]": {
+            "[:else, 1, 34, 6, 34, 28]": 15,
+            "[:then, 2, 34, 6, 34, 12]": 0
           },
-          "[:if, 3, 36, 8, 40, 11]": {
-            "[:then, 4, 38, 10, 39, 60]": 15,
-            "[:else, 5, 36, 8, 40, 11]": 0
+          "[:if, 3, 38, 6, 45, 9]": {
+            "[:then, 4, 39, 8, 43, 11]": 15,
+            "[:else, 5, 38, 6, 45, 9]": 0
+          },
+          "[:if, 6, 39, 8, 43, 11]": {
+            "[:then, 7, 41, 10, 42, 60]": 15,
+            "[:else, 8, 39, 8, 43, 11]": 0
           }
         }
       },
@@ -378,14 +427,15 @@
           null,
           1,
           1,
+          1,
           null,
           null,
           1,
           null,
           1,
-          10,
-          10,
-          10,
+          11,
+          11,
+          11,
           0,
           0,
           0,
@@ -408,9 +458,9 @@
           null
         ],
         "branches": {
-          "[:if, 0, 23, 10, 38, 13]": {
-            "[:then, 1, 24, 12, 30, 13]": 0,
-            "[:else, 2, 32, 12, 37, 13]": 0
+          "[:if, 0, 24, 10, 39, 13]": {
+            "[:then, 1, 25, 12, 31, 13]": 0,
+            "[:else, 2, 33, 12, 38, 13]": 0
           }
         }
       },
@@ -455,18 +505,6 @@
         ],
         "branches": {}
       },
-      "/home/vscode/environment/todo-rails-application/app/controllers/static_pages_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null
-        ],
-        "branches": {}
-      },
       "/home/vscode/environment/todo-rails-application/app/controllers/users/sessions_controller.rb": {
         "lines": [
           null,
@@ -497,36 +535,13 @@
         ],
         "branches": {}
       },
-      "/home/vscode/environment/todo-rails-application/app/controllers/users/confirmations_controller.rb": {
+      "/home/vscode/environment/todo-rails-application/app/controllers/static_pages_controller.rb": {
         "lines": [
+          1,
+          1,
           null,
           null,
           1,
-          null,
-          1,
-          2,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
           null,
           null
         ],
@@ -581,6 +596,41 @@
             "[:else, 2, 16, 8, 17, 110]": 3
           }
         }
+      },
+      "/home/vscode/environment/todo-rails-application/app/controllers/users/confirmations_controller.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null
+        ],
+        "branches": {}
       },
       "/home/vscode/environment/todo-rails-application/app/controllers/todos_controller.rb": {
         "lines": [
@@ -740,7 +790,7 @@
         "branches": {}
       }
     },
-    "timestamp": 1750148879
+    "timestamp": 1750316949
   },
   "Integration Tests": {
     "coverage": {
