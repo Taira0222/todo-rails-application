@@ -12,10 +12,17 @@ on:
     branches: [ "main" ]
   # 手動で実行可能
   workflow_dispatch:
+
+# pipefail を有効化
+defaults:
+  run:
+    shell: bash
     
 jobs:
   test:
     runs-on: ubuntu-latest
+    # タイムアウトを5分に設定
+    timeout-minutes: 5
     services:
       postgres:
         image: postgres:15-alpine
