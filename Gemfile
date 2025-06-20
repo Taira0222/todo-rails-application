@@ -53,7 +53,6 @@ group :development, :test do
   gem "dotenv-rails"
   # システムの脆弱性チェック(ciに必要)
   gem "bundler-audit"
-  gem "brakeman"
 end
 
 group :development do
