@@ -28,5 +28,5 @@ defaults:
 
   - template: "ci_cd.yml"
     name: "📦 インフラ・CI/CD改善"
-    about: "CIやDocker、GitHub Actionsなどの改善提案"
+    about: "Docker、GitHub Actions、AWSなどのCI/CD・インフラに関する提案を記入してください"
     labels: ["ci/cd"]

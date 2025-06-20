@@ -1,4 +1,4 @@
-name: 📦 インフラ・CI/CD改善・構築
+name: "📦 インフラ・CI/CD改善"
 description: Docker、GitHub Actions、AWSなどのCI/CD・インフラに関する提案を記入してください
 title: "[CI/CD] "
 labels: ["ci/cd"]
