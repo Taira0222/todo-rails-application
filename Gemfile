@@ -51,6 +51,9 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
   # 環境変数を管理するgem
   gem "dotenv-rails"
+  # システムの脆弱性チェック(ciに必要)
+  gem "bundler-audit"
+  gem "brakeman"
 end
 
 group :development do
