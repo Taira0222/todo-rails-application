@@ -1,1 +1,2 @@
-<%=delete_todo(@todo) %>
+<% source = params[:source].presence %>  <%# 空文字もnil とする。 %>
+<%=delete_todo(@todo,source) %>
