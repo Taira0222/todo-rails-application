@@ -34,10 +34,18 @@ module TodosHelper
   end
 
   # todo 削除時に発動する Turbo stream
-  def delete_todo(todo)
+  def delete_todo(todo,source)
     flash.now[:notice] = "todoを削除しました"
-    turbo_stream.remove(dom_id(todo)) +
-    turbo_stream.replace("flash", partial: "shared/flash")
+    source_todos = current_user.todos.send(source).where(due_at: todo.due_at.all_day)
+    streams = [
+      turbo_stream.remove(dom_id(todo)),
+      turbo_stream.replace("flash", partial: "shared/flash")
+    ]
+    if source_todos.empty?
+      group_id = "todos_group_#{todo.due_at.to_date}"
+      streams << turbo_stream.remove(group_id)
+    end
+    streams.reduce(:+)
   end
 
   private
@@ -64,10 +72,8 @@ module TodosHelper
       end
       # sourceと同じor doneがtrue なら要素置換、違えば移動
       if source.to_s == target_list.to_s || todo.done
-        puts ">>> sourceと同じor doneがtrue"
         replace_todo(todo, source)
       else
-        puts ">>> todo を移動"
         message = MOVEMENT_MESSAGES[target_list]
         move(todo, target_list, message, source)
       end
