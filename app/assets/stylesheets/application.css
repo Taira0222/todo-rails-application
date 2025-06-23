@@ -8,3 +8,12 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* app/views/todo/_todo.html.erb のCSS */
+/* スマホ・タブレット用の場合は縦3点メニューを表示させる */
+@media (hover: none) {
+  /* タッチ時は強制表示 */
+  details.dropdown-summary summary {
+    opacity: 1 ;
+  }
+}
