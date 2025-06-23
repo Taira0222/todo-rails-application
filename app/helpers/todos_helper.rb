@@ -34,7 +34,7 @@ module TodosHelper
   end
 
   # todo 削除時に発動する Turbo stream
-  def delete_todo(todo,source)
+  def delete_todo(todo, source)
     flash.now[:notice] = "todoを削除しました"
     source_todos = current_user.todos.send(source).where(due_at: todo.due_at.all_day)
     streams = [
