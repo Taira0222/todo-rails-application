@@ -26,8 +26,6 @@ jobs:
     services:
       db:
         image: postgres:15-alpine
-        ports:
-          - "5432:5432"
         env:
           POSTGRES_DB: todo_app_test
           POSTGRES_USER: postgres
