@@ -36,10 +36,21 @@ body:
     attributes:
       label: 期待する動作
       description: 本来期待される動作を記述してください
+      placeholder: 正常に動作する場合は〜が表示されるはずでした など
     validations:
       required: true
 
-  # 4. 発生頻度（frequency）
+  # 4. 現時点で思いつく原因・解決策（optional_solutions）
+  - type: textarea
+    id: optional_solutions
+    attributes:
+      label: 現時点で思いつく原因・解決策（任意）
+      description: このバグが発生した原因や修正のアイデアなど現時点で思いついていれば記入してください
+      placeholder: この変数がnullの可能性があると思われます、turbo-streamをfalseと明示すると治りそう など
+    validations:
+      required: false
+
+  # 5. 発生頻度（frequency）
   - type: dropdown
     id: frequency
     attributes:
@@ -52,7 +63,7 @@ body:
         - 不明（Not sure）
     validations:
       required: false
-   # 5. 利用環境（environment）
+   # 6. 利用環境（environment）
   - type: input
     id: environment
     attributes:
@@ -61,7 +72,7 @@ body:
       placeholder: Windows 11 + Edge, iPhone 13 + Safari
     validations:
       required: false
-  # 6. 該当バージョン（version）
+  # 7. 該当バージョン（version）
   - type: input
     id: version
     attributes:
@@ -70,7 +81,7 @@ body:
       placeholder:  v1.2.3、Chrome 125.0.0.1
     validations:
       required: false
-  # 7.スクリーンショット（screenshot）
+  # 8. スクリーンショット（screenshot）
   - type: textarea
     id: screenshot
     attributes:
@@ -79,7 +90,7 @@ body:
       placeholder: スクリーンショットをここに貼り付けてください
     validations:
       required: false
-  # 8.ログ（logs）
+  # 9. ログ（logs）
   - type: textarea
     id: logs
     attributes:
