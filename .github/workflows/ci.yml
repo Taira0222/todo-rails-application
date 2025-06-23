@@ -24,7 +24,7 @@ jobs:
     # タイムアウトを5分に設定
     timeout-minutes: 5
     services:
-      postgres:
+      db:
         image: postgres:15-alpine
         ports:
           - "5432:5432"
@@ -34,7 +34,6 @@ jobs:
           POSTGRES_PASSWORD: password
     env:
       RAILS_ENV: test
-      DATABASE_URL: "postgres://postgres:password@localhost:5432/todo_app_test"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
