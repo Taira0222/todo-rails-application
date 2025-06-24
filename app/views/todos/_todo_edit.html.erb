@@ -63,8 +63,9 @@
         <div class="flex justify-end space-x-2">
           <%= f.submit "更新",
                 class: "px-4 py-2 bg-blue-500 text-white rounded shadow 
-                        hover:bg-blue-600 focus:outline-none",
-                data: { disable_with: "更新中..." } %> 
+                        hover:bg-blue-600 focus:outline-none
+                        disabled:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed",
+                data: { turbo_submits_with: "更新中..." } %> 
 
           <%= link_to "キャンセル",
                 public_send("#{source}_path", source: source, mode: "edit", todo_id: todo.id),

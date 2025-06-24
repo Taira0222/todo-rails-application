@@ -18,7 +18,7 @@ class TodosController < ApplicationController
       done: false,
       due_at: due_date
     )
-
+    @new_request_token = SecureRandom.uuid
     respond_to do |format|
       format.turbo_stream # create.turbo_stream.erb を参照
     end
@@ -26,11 +26,15 @@ class TodosController < ApplicationController
 
   def create
     @todo = current_user.todos.build(todo_params)
+    @todo.request_token = params[:request_token]
+
     if @todo.save
       respond_to do |format|
         format.turbo_stream
       end
     else
+      # new_request_token を新しい値に変更
+      @new_request_token = SecureRandom.uuid
       respond_to do |format|
         format.turbo_stream { render status: :unprocessable_entity }
       end
@@ -90,7 +94,7 @@ class TodosController < ApplicationController
 
   def todo_params
     params.require(:todo).permit(:title, :description,
-                                 :due_date, :due_time, # 仮想属性
+                                 :due_date, :due_time,  # 仮想属性
                                  :has_time, :position, :done)
   end
 end

@@ -105,7 +105,7 @@ module TodosHelper
         render(partial: "lists/todos_list", locals: { todos: source_todos, source: source })
       )
       else
-        turbo_stream.update(
+        turbo_stream.replace(
         dom_id(todo),
         render(partial: "todos/todo", locals: { todo: todo, source: source })
       )
