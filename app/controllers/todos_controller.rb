@@ -25,29 +25,19 @@ class TodosController < ApplicationController
   end
 
   def create
-    puts "=== createアクション開始 ==="
-    puts "params[:request_token]: #{params[:request_token].inspect}"
-    puts "params全体: #{params.inspect}"
-
     @todo = current_user.todos.build(todo_params)
 
-    # request_tokenを明示的に設定
-    @todo.request_token = params[:request_token]
-    puts "@todo.request_token after setting: #{@todo.request_token.inspect}"
-
-    puts "リクエストトークン #{params[:request_token]}"
     if @todo.save
       respond_to do |format|
         format.turbo_stream
       end
     else
+      # new_request_token を新しい値に変更
       @new_request_token = SecureRandom.uuid
-      puts "更新されたリクエストトークン #{@new_request_token}"
       respond_to do |format|
         format.turbo_stream { render status: :unprocessable_entity }
       end
     end
-    puts "=== createアクション終了 ==="
   end
 
   def edit
