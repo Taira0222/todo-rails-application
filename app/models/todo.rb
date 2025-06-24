@@ -2,7 +2,7 @@ class Todo < ApplicationRecord
   belongs_to :user
   before_validation :merge_due_date_and_time
 
-  attr_accessor :due_date, :due_time # 仮想属性として due_at, due_time を設定
+  attr_accessor :due_date, :due_time, :request_token
 
   # listsコントローラで呼び出している
   scope :today, -> {
@@ -27,6 +27,7 @@ class Todo < ApplicationRecord
   validates :description, length: { maximum: 140 }
   validates :due_at, presence: true
   validates :due_time, presence: true, if: :has_time? # has_time がtrueの時のみバリデーション
+  validate :prevent_double_submission, on: :create
 
   private
     def merge_due_date_and_time
@@ -44,5 +45,24 @@ class Todo < ApplicationRecord
         # due_time が空なら「23:59:59」のまま
       end
       self.due_at = timestamp
+    end
+
+    # 二重の作成を防ぐメソッド
+    def prevent_double_submission
+      # request_token がなければ何もしない
+      return unless request_token.present?
+
+      key = cache_key_for(request_token)
+
+      if Rails.cache.exist?(key)
+        errors.add(:base, "二重送信を検出しました。作成ボタンは1回のみ押してください")
+      else
+        Rails.cache.write(key, true, expires_in: 5.minutes)
+      end
+    end
+
+    # 名前空間付きkeyを作成
+    def cache_key_for(token)
+      "todo:request_token:#{token}"
     end
 end

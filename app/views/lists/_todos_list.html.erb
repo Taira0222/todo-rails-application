@@ -1,7 +1,7 @@
 <% todos.group_by { |todo| todo.due_at.to_date }.each do |date, todos_for_date| %> <%# todos_for_date は同じ日(6/1等)の塊のtodo%>
-  <div class="mb-6">
+  <div class="mb-6" id ="todos_group_<%= date %>">
     <!-- 日付見出し -->
-    <h2 class="text-xl font-semibold text-gray-700 mb-2" id ="todos_group_<%= date %>" >
+    <h2 class="text-xl font-semibold text-gray-700 mb-2"  >
       <%= I18n.l(date, format: :todo) %>
     </h2>
     <!-- タスク一覧 -->

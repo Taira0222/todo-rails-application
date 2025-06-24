@@ -18,23 +18,36 @@ class TodosController < ApplicationController
       done: false,
       due_at: due_date
     )
-
+    @new_request_token = SecureRandom.uuid
     respond_to do |format|
       format.turbo_stream # create.turbo_stream.erb を参照
     end
   end
 
   def create
+    puts "=== createアクション開始 ==="
+    puts "params[:request_token]: #{params[:request_token].inspect}"
+    puts "params全体: #{params.inspect}"
+
     @todo = current_user.todos.build(todo_params)
+
+    # request_tokenを明示的に設定
+    @todo.request_token = params[:request_token]
+    puts "@todo.request_token after setting: #{@todo.request_token.inspect}"
+
+    puts "リクエストトークン #{params[:request_token]}"
     if @todo.save
       respond_to do |format|
         format.turbo_stream
       end
     else
+      @new_request_token = SecureRandom.uuid
+      puts "更新されたリクエストトークン #{@new_request_token}"
       respond_to do |format|
         format.turbo_stream { render status: :unprocessable_entity }
       end
     end
+    puts "=== createアクション終了 ==="
   end
 
   def edit
@@ -90,7 +103,7 @@ class TodosController < ApplicationController
 
   def todo_params
     params.require(:todo).permit(:title, :description,
-                                 :due_date, :due_time, # 仮想属性
+                                 :due_date, :due_time,  # 仮想属性
                                  :has_time, :position, :done)
   end
 end
