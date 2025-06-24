@@ -26,6 +26,7 @@ class TodosController < ApplicationController
 
   def create
     @todo = current_user.todos.build(todo_params)
+    @todo.request_token = params[:request_token]
 
     if @todo.save
       respond_to do |format|
