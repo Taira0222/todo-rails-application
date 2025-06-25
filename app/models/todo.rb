@@ -26,15 +26,14 @@ class Todo < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 140 }
   validates :due_at, presence: true
-  validates :due_time, presence: true, if: :has_time? # has_time がtrueの時のみバリデーション
+  validates :due_time, presence: true, if: :has_time?, on: :create # has_time がtrue, create アクションのみ
   validate :prevent_double_submission, on: :create
 
   private
     def merge_due_date_and_time
       # doneボタンなど入力しない場合にエラーにならない対策
       return unless due_date
-      # 日付の23:59:59をデフォルトタイムスタンプとする
-      # 日付が変わるまで today or upcoming のtodo が移動しなくなる
+      # 時間は0:00 を設定
       timestamp = due_date.in_time_zone.beginning_of_day
       if has_time?
         if due_time.present?
@@ -42,7 +41,7 @@ class Todo < ApplicationRecord
           hour, min = due_time.split(":").map(&:to_i)
           timestamp = timestamp.change(hour: hour, min: min)
         end
-        # due_time が空なら「23:59:59」のまま
+        # due_time が空なら「0:00」のまま
       end
       self.due_at = timestamp
     end
