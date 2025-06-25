@@ -4,7 +4,21 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["checkbox","timepicker"]
   
-  toggle(){
-    this.timepickerTarget.classList.toggle("hidden", !this.checkboxTarget.checked)
+  connect() {
+    // ページ読み込み時にチェック状態に応じて一度トグル
+    this._updateVisibility()
+  }
+
+  toggle() {
+    // チェックが変わったときにも同じ処理
+    this._updateVisibility()
+  }
+
+  _updateVisibility() {
+    if (this.checkboxTarget.checked) {
+      this.timepickerTarget.classList.remove("hidden")
+    } else {
+      this.timepickerTarget.classList.add("hidden")
+    }
   }
 }
