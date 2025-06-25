@@ -95,5 +95,4 @@ class TodosController < ApplicationController
                                  :due_date, :due_time,  # 仮想属性
                                  :has_time, :position, :done)
   end
-
 end

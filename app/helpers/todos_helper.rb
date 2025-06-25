@@ -120,7 +120,7 @@ module TodosHelper
         render(partial: "todos/todo", locals: { todo: todo, source: source })
       )
       # todoを編集する場合
-      else 
+      else
         streams << turbo_stream.replace(
         dom_id(todo),
         render(partial: "todos/todo", locals: { todo: todo, source: source })

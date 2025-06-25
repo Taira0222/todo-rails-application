@@ -1,4 +1,4 @@
 <% source = params[:source]%>
 <%= turbo_stream.prepend "todos_#{source}", partial: "todos/todo", locals: { todo: @todo, source: source } %>
-<%= flash.now[:notice] = "タスクを複製しました" %>
+<%= flash.now[:notice] = "タスクをコピーしました" %>
 <%= turbo_stream.update "flash", partial: "shared/flash" %>
