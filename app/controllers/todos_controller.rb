@@ -44,7 +44,6 @@ class TodosController < ApplicationController
   def edit
     respond_to do |format|
       format.turbo_stream
-      format.html  { redirect_to today_path } # TODO: turboの実装しか考えてないのでpathは別途考える
     end
   end
 
@@ -52,7 +51,6 @@ class TodosController < ApplicationController
     @todo.update(todo_params)
     respond_to do |format|
       format.turbo_stream
-      format.html  { redirect_to today_path } # TODO: turboの実装しか考えてないのでpathは別途考える
     end
   end
 
@@ -97,4 +95,5 @@ class TodosController < ApplicationController
                                  :due_date, :due_time,  # 仮想属性
                                  :has_time, :position, :done)
   end
+
 end
