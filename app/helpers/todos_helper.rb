@@ -6,6 +6,10 @@ module TodosHelper
     archived: "アーカイブに移動しました。"
   }.freeze
 
+  REPLACE_TODO_MESSAGE = {
+    create: "todoを作成しました",
+    update: "todoを更新しました"
+  }
   def build_toggle_done_stream(todo, source)
     if todo.due_at.to_date >= Date.current  # 今日以降 かつ done がtrueになったとき
       if todo.done?
@@ -21,7 +25,7 @@ module TodosHelper
   # todo 作成時に発動する Turbo stream
   def build_create_todo_stream(todo, source)
     streams = []
-    streams.concat(insert_new_todo_to_list(todo, source))
+    streams.concat(relocate_add_button(todo, source))
     streams.concat(Array(move_todo_stream(todo, source)))
     streams.reduce(:+)
   end
@@ -39,7 +43,7 @@ module TodosHelper
     source_todos = current_user.todos.send(source).where(due_at: todo.due_at.all_day)
     streams = [
       turbo_stream.remove(dom_id(todo)),
-      turbo_stream.replace("flash", partial: "shared/flash")
+      turbo_stream.update("flash", partial: "shared/flash")
     ]
     if source_todos.empty?
       group_id = "todos_group_#{todo.due_at.to_date}"
@@ -50,10 +54,9 @@ module TodosHelper
 
   private
 
-    # add_todo_buttonに入った新規todo を todos_source に移動する
-    def insert_new_todo_to_list(todo, source)
+    # add_todo_buttonをもとに戻す
+    def relocate_add_button(todo, source)
       [
-        turbo_stream.append("todos_#{source}", partial: "todos/todo", locals: { todo: todo, source: source }),
         turbo_stream.replace("add_todo_button_#{source}", partial: "lists/add_todo_button", locals: { source: source })
       ]
     end
@@ -72,7 +75,9 @@ module TodosHelper
       end
       # sourceと同じor doneがtrue なら要素置換、違えば移動
       if source.to_s == target_list.to_s || todo.done
-        replace_todo(todo, source)
+        notice = todo.saved_change_to_id? ? :create : :update
+        message = REPLACE_TODO_MESSAGE[notice]
+        replace_todo(todo, source, message)
       else
         message = MOVEMENT_MESSAGES[target_list]
         move(todo, target_list, message, source)
@@ -86,7 +91,7 @@ module TodosHelper
       streams = [
         turbo_stream.remove(dom_id(todo)),
         turbo_stream.prepend("todos_#{list}", render(partial: "todos/todo", locals: { todo: todo, source: list.to_s })),
-        turbo_stream.replace("flash", partial: "shared/flash")
+        turbo_stream.update("flash", partial: "shared/flash")
       ]
 
       if source_todos.empty?
@@ -96,20 +101,32 @@ module TodosHelper
       streams.reduce(:+)
     end
 
-    def replace_todo(todo, source)
+    def replace_todo(todo, source, message)
+      flash.now[:notice] = message
+      streams = [
+        turbo_stream.update("flash", partial: "shared/flash")
+      ]
       source_todos =  current_user.todos.send(source).where(due_at: todo.due_at.all_day)
       # 初めてのtodo作成の場合
       if source_todos.count == 1 && todo.saved_change_to_id?
-        turbo_stream.append(
+        streams << turbo_stream.append(
         "todos_list_wrapper",
         render(partial: "lists/todos_list", locals: { todos: source_todos, source: source })
       )
+      # todoを作成する場合(すでにその日付にtodoがある場合)
+      elsif todo.saved_change_to_id?
+        streams << turbo_stream.append(
+        "todos_#{source}",
+        render(partial: "todos/todo", locals: { todo: todo, source: source })
+      )
+      # todoを編集する場合
       else
-        turbo_stream.replace(
+        streams << turbo_stream.replace(
         dom_id(todo),
         render(partial: "todos/todo", locals: { todo: todo, source: source })
       )
       end
+      streams.reduce(:+)
     end
 
     def toggle_done_in_archive(todo, source)
