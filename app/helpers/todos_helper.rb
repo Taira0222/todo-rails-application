@@ -25,7 +25,7 @@ module TodosHelper
   # todo 作成時に発動する Turbo stream
   def build_create_todo_stream(todo, source)
     streams = []
-    streams.concat(insert_new_todo_to_list(todo, source))
+    streams.concat(relocate_add_button(todo, source))
     streams.concat(Array(move_todo_stream(todo, source)))
     streams.reduce(:+)
   end
@@ -54,8 +54,8 @@ module TodosHelper
 
   private
 
-    # add_todo_buttonに入った新規todo を todos_source に移動する
-    def insert_new_todo_to_list(todo, source)
+    # add_todo_buttonをもとに戻す
+    def relocate_add_button(todo, source)
       [
         turbo_stream.replace("add_todo_button_#{source}", partial: "lists/add_todo_button", locals: { source: source })
       ]
