@@ -2,20 +2,29 @@ import { Controller } from '@hotwired/stimulus';
 
 // Connects to data-controller="dropdown"
 export default class extends Controller {
-  _clickOutside = (event) => {
-    // open が true (= メニューが開いている) && クリック先が details の内側ではない
-    if (this.element.open && !this.element.contains(event.target)) {
-      this.element.open = false; // メニューを閉じる
-    }
-  };
-
   connect() {
-    // ドキュメント全体で「クリックされたら _clickOutside を呼ぶ」
-    document.addEventListener('click', this._clickOutside);
+    // 外側クリックで閉じる
+    document.addEventListener("click", this._clickOutside)
+
+    // メニュー内の a や button 押下でも閉じる
+    this.element.addEventListener("click", this._clickInside)
   }
 
   disconnect() {
-    // Controller が外れたときにイベントリスナーを解除
-    document.removeEventListener('click', this._clickOutside);
+    document.removeEventListener("click", this._clickOutside)
+    this.element.removeEventListener("click", this._clickInside)
+  }
+
+  _clickOutside = (event) => {
+    if (this.element.open && !this.element.contains(event.target)) {
+      this.element.open = false
+    }
+  }
+
+  _clickInside = (event) => {
+    // メニューアイテム（リンク or ボタン）をクリックしたら閉じる
+    if (event.target.closest("a, button")) {
+      this.element.open = false
+    }
   }
 }

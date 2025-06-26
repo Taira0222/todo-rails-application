@@ -8,6 +8,10 @@ module.exports = {
     './app/javascript/**/*.js',
     './app/views/**/*.{erb,haml,html,slim}',
   ],
+  safelist: [
+    'animate-spin',
+    'border-t-transparent'
+  ],
   theme: {
     extend: {
       fontFamily: {

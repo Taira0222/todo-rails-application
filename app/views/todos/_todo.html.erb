@@ -1,4 +1,13 @@
- <li id="<%= dom_id(todo) %>" class="group flex items-center justify-between gap-6 px-6 py-4 border-b rounded-sm hover:bg-gray-200 transition-colors">
+ <li id="<%= dom_id(todo) %>" 
+      data-controller="loading-overlay"
+      class="group flex items-center justify-between gap-6 px-6 py-4 border-b rounded-sm hover:bg-gray-200 transition-colors">
+
+  <!-- オーバーレイ(最初はhidden) -->
+  <div data-loading-overlay-target="overlay"
+       class="hidden absolute inset-0 bg-white bg-opacity-50 flex items-center justify-center z-10">
+    <!-- Tailwind の animate-spin を使ったシンプルなスピナー -->
+    <div class = "animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"> </div>
+  </div>
 
   <div class="flex items-center space-x-3 shrink-0">
     <!-- チェックボタン -->
