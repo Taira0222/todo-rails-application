@@ -1,6 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
 
-// Connects to data-controller="edit"
+// Connects to data-controller="loading_overlay"
 export default class extends Controller {
   static targets = ["overlay"]
 
