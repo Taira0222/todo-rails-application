@@ -1,4 +1,5 @@
 <% source = params[:source]%>
+<%= turbo_stream.update("flash", partial: "shared/flash") %>
 <%= turbo_stream.replace(dom_id(@todo)) do %>
   <%= render partial: "todo_edit", locals: { todo: @todo, source: source } %>
 <% end %>

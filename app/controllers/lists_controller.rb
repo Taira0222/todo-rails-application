@@ -32,7 +32,7 @@ class ListsController < ApplicationController
           else
             render turbo_stream:
             turbo_stream.replace(
-              "add_todo_button_#{source}",
+              "todo_#{source}_form",
               partial:  "lists/add_todo_button",
               locals:   { source: source }
             )

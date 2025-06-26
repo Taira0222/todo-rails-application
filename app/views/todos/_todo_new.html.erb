@@ -1,6 +1,17 @@
-<div id ="add_todo_button_<%= source %>">
+<div id ="todo_<%= source %>_form"
+     data-controller="disable-todos loading-overlay"
+     data-disable-todos-todo-id-value="<%= dom_id(todo) %>">
+
+  <!-- オーバーレイ(最初はhidden) -->
+  <div data-loading-overlay-target="overlay"
+       class="hidden absolute inset-0 bg-white bg-opacity-50 flex items-center justify-center z-10">
+    <!-- Tailwind の animate-spin を使ったシンプルなスピナー -->
+    <div class = "animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"> </div>
+  </div>
+
   <li id="<%= dom_id(todo) %>" class="list-none border rounded p-4 mb-2 ">
     <%= render "devise/shared/error_messages", resource: todo %>
+
     <%= form_with model: todo, data: { turbo_stream: true } do |f| %>
 
       <%= hidden_field_tag :source, source %>

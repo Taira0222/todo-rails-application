@@ -57,7 +57,7 @@ module TodosHelper
     # add_todo_buttonをもとに戻す
     def relocate_add_button(todo, source)
       [
-        turbo_stream.replace("add_todo_button_#{source}", partial: "lists/add_todo_button", locals: { source: source })
+        turbo_stream.replace("todo_#{source}_form", partial: "lists/add_todo_button", locals: { source: source })
       ]
     end
 
