@@ -63,10 +63,6 @@ module TodosHelper
 
     # todo作成、編集の両方で使用
     def move_todo_stream(todo, source)
-      # 過去日ならdone をtrue としておく
-      if todo.due_at.to_date < Date.current && !todo.done?
-        todo.update(done: true)
-      end
       # 期限日と done による行き先の決定
       target_list = case todo.due_at.to_date <=> Date.current
       when  1 then  :upcoming   # due_at > today
@@ -75,10 +71,13 @@ module TodosHelper
       end
       # sourceと同じor doneがtrue なら要素置換、違えば移動
       if source.to_s == target_list.to_s || todo.done
+
         notice = todo.saved_change_to_id? ? :create : :update
         message = REPLACE_TODO_MESSAGE[notice]
         replace_todo(todo, source, message)
       else
+        # 過去日ならdone をtrue としておくと、archived 移動後done にチェックがついている
+        todo.update(done: true) if todo.due_at.to_date < Date.current && !todo.done?
         message = MOVEMENT_MESSAGES[target_list]
         move(todo, target_list, message, source)
       end
@@ -107,6 +106,7 @@ module TodosHelper
         turbo_stream.update("flash", partial: "shared/flash")
       ]
       source_todos =  current_user.todos.send(source).where(due_at: todo.due_at.all_day)
+
       # 初めてのtodo作成の場合
       if source_todos.count == 1 && todo.saved_change_to_id?
         streams << turbo_stream.append(

@@ -18,9 +18,11 @@ class TodosController < ApplicationController
       done: false,
       due_at: due_date
     )
+    # todo_new に@new_request_tokenを渡す
+    # 二重送信検知として@new_request_tokenを使用
     @new_request_token = SecureRandom.uuid
     respond_to do |format|
-      format.turbo_stream # create.turbo_stream.erb を参照
+      format.turbo_stream
     end
   end
 
