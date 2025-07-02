@@ -12,8 +12,10 @@ Rails チュートリアル修了後のアウトプットとして、一人で C
 ## 主な機能
 
 - ユーザー認証（Devise 使用、Google OAuth 対応）
-- ToDo の作成・編集・削除（CRUD）
-- Turbo stream を使用した部分更新
+- ToDo の作成・編集・削除・コピー（CRUD）
+- Turbo stream を使用した **非同期 UI の実装**
+- ソフトウェアテスト技法(同値クラステスト、境界値テスト、ディシジョンテーブル、状態遷移テスト)
+- カバレッジ(C0,C1)を導入。(Line Coverage: 77.37% (212 / 274) Branch Coverage: 53.23% (33 / 62))
 - ステータス別（未完了/完了）での分類表示
 - 期限によるタスクの分類（今日、近日、期限切れなど）
 - 統合テストの導入（Minitest）
@@ -30,7 +32,7 @@ Rails チュートリアル修了後のアウトプットとして、一人で C
 | 環境構築       | Docker / Devcontainer（VSCode）              |
 | CI/CD          | Github Actions(CI)                           |
 | インフラ       | Render(App) , Neon(DB)                       |
-| その他         | ESLint / rubocop                             |
+| その他         | ESLint / rubocop / SimpleCov                 |
 
 ## ライセンス
 
